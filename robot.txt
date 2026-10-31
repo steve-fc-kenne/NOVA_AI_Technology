@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://steve-fc-kenne.github.io/NOVA_AI_Technology/sitemap.xml
