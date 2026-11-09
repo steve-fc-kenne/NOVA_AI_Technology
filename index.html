@@ -5,54 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nova AI Technology</title>
+    <!-- Référencement naturel (SEO) -->
+    <title>Nova AI Technology | Électronique, Automatisation et IA</title>
+
+    <meta name="description" content="Nova AI Technology réalise des installations électriques domestiques et industrielles sûres et conçoit des solutions en génie électrique, électronique, automatisation industrielle, IoT, robotique et intelligence artificielle.">
+    <meta name="keywords" content="Nova AI Technology, NAIT, génie électrique, informatique industrielle, électronique, automatisation, IoT, robotique, intelligence artificielle">
+    <meta name="author" content="Steve FC">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0b1120">
+
+    <!-- Adresse officielle -->
+    <link rel="canonical" href="https://steve-fc-kenne.github.io/NOVA_AI_Technology/">
+
+    <!-- Icône du site -->
+    <link rel="icon" type="image/png" href="images/logo-nait.png">
+
+    <!-- Partage sur les réseaux sociaux -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Nova AI Technology">
+    <meta property="og:title" content="Nova AI Technology | Innovons. Construisons. Automatisons.">
+    <meta property="og:description" content="Découvrez nos solutions en électronique, automatisation, systèmes embarqués, IoT, robotique et intelligence artificielle.">
+    <meta property="og:url" content="https://steve-fc-kenne.github.io/NOVA_AI_Technology/">
+    <meta property="og:image" content="https://steve-fc-kenne.github.io/NOVA_AI_Technology/images/animation/environnement-nait.png">
+    <meta property="og:image:alt" content="Univers technologique de Nova AI Technology">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nova AI Technology | NAIT">
+    <meta name="twitter:description" content="Innovation, électronique, automatisation, robotique et intelligence artificielle.">
+    <meta name="twitter:image" content="https://steve-fc-kenne.github.io/NOVA_AI_Technology/images/animation/environnement-nait.png">
+
+    <!-- Feuilles de style -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/nait-ai.css">
+    <link rel="stylesheet" href="css/electricite.css">
+    <link rel="stylesheet" href="css/bienvenue.css">
+
+    <!-- NAIT AI : attendre que le widget soit en place avant le premier affichage -->
+    <link rel="expect" href="#nait-ai-ready" blocking="render">
+
 </head>
+
 <body>
 
-    <header>
+<header class="site-header">
 
-        <a href="#accueil" class="logo">
+    <a href="#accueil" class="logo" aria-label="Nova AI Technology - Accueil">
+        <img src="images/logo-nait.png" alt="Logo Nova AI Technology">
+        <span>NAIT</span>
+    </a>
 
-            <img
-                src="images/logo-nait.png"
-                alt="Logo Nova AI Technology"
-            >
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="main-nav">
+        <span aria-hidden="true">☰</span>
+    </button>
 
-            <span>NAIT</span>
+    <nav id="main-nav" aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#electricite">Électricité</a>
+        <a href="#services">Services</a>
+        <a href="#projets">Projets</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-        </a>
+</header>
 
+<main>
 
-        <button class="menu-toggle" id="menu-toggle">
-            ☰
-        </button>
-
-
-        <nav id="main-nav">
-
-            <a href="#accueil">Accueil</a>
-
-            <a href="#services">Services</a>
-
-            <a href="#projets">Projets</a>
-
-            <a href="#apropos">À propos</a>
-
-            <a href="#contact">Contact</a>
-
-        </nav>
-
-    </header>
-    <main>
-
-    <section class="hero">
+    <section class="hero" id="accueil">
 
         <div class="hero-content">
 
-            <p class="eyebrow">
-                NOVA AI TECHNOLOGY · NAIT
-            </p>
+            <div class="welcome-note">
+                <p>👋 <strong>Bienvenue chez Nova AI Technology !</strong>
+                Nouveau ici ? Voici comment trouver rapidement ce que vous cherchez.</p>
+                <button type="button" class="guide-btn" id="guide-open" aria-haspopup="dialog">
+                    Guide de navigation
+                </button>
+            </div>
+
+            <p class="eyebrow">NOVA AI TECHNOLOGY · NAIT</p>
 
             <h1>
                 Innovons.
@@ -67,29 +101,16 @@
             </p>
 
             <div class="buttons">
-
-                <a href="#services" class="btn-primary">
-                    Découvrir nos services
-                </a>
-
-                <a href="#contact" class="btn-secondary">
-                    Nous contacter
-                </a>
-
+                <a href="#services" class="btn-primary">Découvrir nos services</a>
+                <a href="#contact" class="btn-secondary">Nous contacter</a>
             </div>
 
         </div>
 
-
         <div class="hero-photo">
 
             <div class="photo-container">
-
-                <img
-                    src="images/steve-fc.png"
-                    alt="Steve FC - Fondateur de Nova AI Technology"
-                >
-
+                <img src="images/steve-fc.png" alt="Steve FC - Fondateur de Nova AI Technology">
             </div>
 
             <div class="founder">
@@ -100,493 +121,516 @@
         </div>
 
     </section>
+
+    <!-- =====================================================
+        INSTALLATIONS ÉLECTRIQUES · DOMESTIQUE & INDUSTRIEL
+        Photos à placer dans images/electricite/
+        ===================================================== -->
+
+    <section class="elec-section" id="electricite" aria-labelledby="elec-title">
+
+        <div class="elec-heading">
+
+            <p class="eyebrow">INSTALLATIONS ÉLECTRIQUES · DOMESTIQUE & INDUSTRIEL</p>
+
+            <h2 id="elec-title">
+                Des installations électriques
+                <span>sûres</span>, conformes et durables.
+            </h2>
+
+            <p>
+                De la maison à l'atelier industriel, nous concevons et réalisons
+                des installations électriques fiables, pensées dès le départ
+                pour protéger les personnes, les équipements et les bâtiments.
+            </p>
+
+        </div>
+
+        <div class="elec-cards">
+
+            <article class="elec-card">
+
+                <div class="elec-photo">
+                    <img src="images/electricite/domestique.png" alt="Tableau électrique domestique propre, organisé et étiqueté" loading="lazy" decoding="async" onerror="this.remove()">
+                    <span class="elec-badge">DOMESTIQUE</span>
+                </div>
+
+                <div class="elec-card-body">
+                    <h3>Installation électrique domestique</h3>
+                    <p>
+                        Une installation claire, protégée et évolutive
+                        pour le confort et la sécurité de votre habitation.
+                    </p>
+                    <ul>
+                        <li>Tableau de distribution et circuits dédiés</li>
+                        <li>Prises, éclairage et alimentation des équipements</li>
+                        <li>Mise à la terre et protection différentielle</li>
+                        <li>Rénovation et mise en sécurité d'installations existantes</li>
+                        <li>Préparation à la domotique</li>
+                    </ul>
+                </div>
+
+            </article>
+
+            <article class="elec-card">
+
+                <div class="elec-photo">
+                    <img src="images/electricite/industriel.png" alt="Armoire électrique industrielle avec câblage soigné" loading="lazy" decoding="async" onerror="this.remove()">
+                    <span class="elec-badge">INDUSTRIEL</span>
+                </div>
+
+                <div class="elec-card-body">
+                    <h3>Installation électrique industrielle</h3>
+                    <p>
+                        Des armoires, des commandes et des câblages conçus
+                        pour fonctionner durablement, en toute sécurité.
+                    </p>
+                    <ul>
+                        <li>Armoires et coffrets de distribution ou de commande</li>
+                        <li>Câblage, repérage et schémas électriques</li>
+                        <li>Alimentation et protection des moteurs</li>
+                        <li>Automatisation : capteurs, actionneurs, automates</li>
+                        <li>Dépannage et maintenance</li>
+                    </ul>
+                </div>
+
+            </article>
+
+        </div>
+
+        <!-- Priorité sécurité -->
+
+        <div class="elec-safety">
+
+            <div class="elec-safety-title">
+                <span class="elec-warning" aria-hidden="true">⚠</span>
+                <h3>La sécurité, notre priorité absolue</h3>
+            </div>
+
+            <p>
+                Une installation électrique ne se juge pas seulement
+                à son bon fonctionnement, mais à sa capacité à éviter
+                les accidents. Chaque choix technique est fait avec cet objectif.
+            </p>
+
+            <div class="elec-pillars">
+
+                <div class="elec-pillar">
+                    <strong>Protection des personnes</strong>
+                    <p>Mise à la terre, dispositifs différentiels et équipements adaptés aux locaux.</p>
+                </div>
+
+                <div class="elec-pillar">
+                    <strong>Protection des équipements</strong>
+                    <p>Disjoncteurs et sections de câbles dimensionnés selon la charge réelle.</p>
+                </div>
+
+                <div class="elec-pillar">
+                    <strong>Respect des normes</strong>
+                    <p>Une réalisation conforme aux règles et aux normes en vigueur.</p>
+                </div>
+
+                <div class="elec-pillar">
+                    <strong>Contrôle avant mise en service</strong>
+                    <p>Vérifications et essais systématiques avant toute mise sous tension.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Méthode -->
+
+        <ol class="elec-steps">
+            <li><strong>Analyse du besoin</strong><span>Usage, puissance, contraintes du site et risques à maîtriser.</span></li>
+            <li><strong>Conception</strong><span>Schémas, choix des protections et dimensionnement.</span></li>
+            <li><strong>Réalisation</strong><span>Câblage soigné, repérage clair et matériel adapté.</span></li>
+            <li><strong>Vérification</strong><span>Contrôles, essais et mise en service sécurisée.</span></li>
+        </ol>
+
+        <div class="elec-cta">
+            <p>Un projet d'installation ou une mise en sécurité à envisager ?</p>
+            <a href="#contact" class="btn-primary">Parler de mon installation →</a>
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+        ANIMATION INTERACTIVE - UNIVERS NOVA AI TECHNOLOGY
+        ===================================================== -->
+
+    <section class="nait-journey" id="univers-nait">
+
+        <div class="nait-journey-header">
+            <p class="eyebrow">DÉCOUVRIR NOTRE VISION</p>
+
+            <h2>De la maison intelligente à l'industrie du futur</h2>
+
+            <p>
+                Explorez un univers où l'électricité, l'automatisation,
+                les objets connectés et l'intelligence artificielle
+                travaillent ensemble pour transformer notre quotidien.
+            </p>
+        </div>
+
+        <div class="nait-stage" id="nait-stage">
+
+            <div class="nait-world" id="nait-world">
+
+                <img
+                    class="nait-world-image"
+                    src="images/animation/environnement-nait.png"
+                    alt="Environnement isométrique de Nova AI Technology présentant une maison intelligente, une infrastructure électrique et une usine automatisée"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                >
+
+            </div>
+
+        </div>
+
+        <!-- Panneau d'explication -->
+
+        <div class="nait-info-panel" aria-live="polite">
+
+            <h3 id="nait-scene-title">Un monde à transformer</h3>
+
+            <p id="nait-scene-description">
+                Découvrez comment les technologies de Nova AI Technology
+                peuvent contribuer à moderniser les installations
+                domestiques et industrielles.
+            </p>
+
+        </div>
+
+        <!-- Commandes de l'animation -->
+
+        <div class="nait-controls">
+            <button class="nait-control-btn" id="nait-prev" type="button">← Précédent</button>
+            <button class="nait-control-btn" id="nait-play" type="button">Pause</button>
+            <button class="nait-control-btn" id="nait-next" type="button">Suivant →</button>
+        </div>
+
+        <div class="nait-progress" role="progressbar" aria-label="Progression de l'animation" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="nait-progress">
+            <div class="nait-progress-bar" id="nait-progress-bar"></div>
+        </div>
+
+    </section>
+
+    <!-- FIN DE L'ANIMATION INTERACTIVE -->
+
     <section id="services" class="services">
 
-    <div class="section-title">
+        <div class="section-title">
 
-        <p class="eyebrow">
-            NOS DOMAINES D'EXPERTISE
-        </p>
+            <p class="eyebrow">NOS DOMAINES D'EXPERTISE</p>
 
-        <h2>
-            Des solutions technologiques
-            pour des projets ambitieux.
-        </h2>
-
-        <p>
-            Nova AI Technology accompagne la conception
-            et la réalisation de solutions dans les domaines
-            de l'électricité, de l'électronique,
-            de l'informatique industrielle et de l'intelligence artificielle.
-        </p>
-
-    </div>
-
-
-    <div class="services-grid">
-
-
-        <article class="service-card">
-
-            <div class="service-icon">
-                ⚡
-            </div>
-
-            <h3>
-                Électricité & Électronique
-            </h3>
+            <h2>Des solutions technologiques pour des projets ambitieux.</h2>
 
             <p>
-                Conception de circuits, alimentation,
-                câblage, commande et intégration de systèmes électroniques.
+                Nova AI Technology accompagne la conception
+                et la réalisation de solutions dans les domaines
+                de l'électricité, de l'électronique,
+                de l'informatique industrielle et de l'intelligence artificielle.
             </p>
 
-        </article>
+        </div>
 
+        <div class="services-grid">
 
-        <article class="service-card">
-
-            <div class="service-icon">
-                ⚙
-            </div>
-
-            <h3>
-                Automatisme industriel
-            </h3>
-
-            <p>
-                Automatisation des systèmes,
-                capteurs, actionneurs, commande et contrôle.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-icon">
-                &lt;/&gt;
-            </div>
-
-            <h3>
-                Programmation
-            </h3>
-
-            <p>
-                Développement avec Arduino, C, C++,
-                Python et programmation de systèmes embarqués.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-icon">
-                🌐
-            </div>
-
-            <h3>
-                IoT & Réseaux
-            </h3>
-
-            <p>
-                Objets connectés, communication sans fil,
-                acquisition et transmission de données.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-icon">
-                🤖
-            </div>
-
-            <h3>
-                Robotique & IA
-            </h3>
-
-            <p>
-                Conception de robots intelligents,
-                systèmes autonomes, vision et intelligence artificielle.
-            </p>
-
-        </article>
-
-
-        <article class="service-card">
-
-            <div class="service-icon">
-                🧠
-            </div>
-
-            <h3>
-                Systèmes embarqués
-            </h3>
-
-            <p>
-                Microcontrôleurs, capteurs, actionneurs
-                et développement de solutions embarquées.
-            </p>
-
-        </article>
-
-
-    </div>
-
-</section>
-
-<section id="projets" class="projects">
-
-    <div class="section-title">
-
-        <p class="eyebrow">
-            NOS PROJETS
-        </p>
-
-        <h2>
-            De l'idée à la réalisation.
-        </h2>
-
-        <p>
-            Découvrez quelques-uns des domaines dans lesquels
-            Nova AI Technology développe des solutions innovantes.
-        </p>
-
-    </div>
-
-
-    <div class="projects-grid">
-
-
-        <!-- PROJET 1 -->
-
-        <article class="project-card">
-
-            <div class="project-image">
-                <img
-                    src="images/projet-robot.png"
-                    alt="Robot conversationnel NAIT"
-                >
-            </div>
-
-            <div class="project-content">
-
-                <span class="project-number">
-                    PROJET 01
-                </span>
-
-                <h3>
-                    Robot conversationnel intelligent
-                </h3>
-
+            <article class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Électricité & Électronique</h3>
                 <p>
-                    Conception d'un robot capable de recevoir
-                    des commandes vocales, de communiquer avec
-                    son utilisateur et d'effectuer différentes actions.
+                    Conception de circuits, alimentation,
+                    câblage, commande et intégration de systèmes électroniques.
                 </p>
+            </article>
 
-                <a href="projets/robot.html" class="project-link">
-                    Voir le projet →
+            <article class="service-card">
+                <div class="service-icon">⚙</div>
+                <h3>Automatisme industriel</h3>
+                <p>
+                    Automatisation des systèmes,
+                    capteurs, actionneurs, commande et contrôle.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">&lt;/&gt;</div>
+                <h3>Programmation</h3>
+                <p>
+                    Développement avec Arduino, C, C++,
+                    Python et programmation de systèmes embarqués.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>IoT & Réseaux</h3>
+                <p>
+                    Objets connectés, communication sans fil,
+                    acquisition et transmission de données.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>Robotique & IA</h3>
+                <p>
+                    Conception de robots intelligents,
+                    systèmes autonomes, vision et intelligence artificielle.
+                </p>
+            </article>
+
+            <article class="service-card">
+                <div class="service-icon">🧠</div>
+                <h3>Systèmes embarqués</h3>
+                <p>
+                    Microcontrôleurs, capteurs, actionneurs
+                    et développement de solutions embarquées.
+                </p>
+            </article>
+
+        </div>
+
+    </section>
+
+    <section id="projets" class="projects">
+
+        <div class="section-title">
+
+            <p class="eyebrow">NOS PROJETS</p>
+
+            <h2>De l'idée à la réalisation.</h2>
+
+            <p>
+                Découvrez quelques-uns des domaines dans lesquels
+                Nova AI Technology développe des solutions innovantes.
+            </p>
+
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- PROJET 1 -->
+
+            <article class="project-card">
+
+                <div class="project-image">
+                    <img src="images/projet-robot.png" alt="Robot conversationnel NAIT">
+                </div>
+
+                <div class="project-content">
+
+                    <span class="project-number">PROJET 01</span>
+
+                    <h3>Robot domotique intelligent</h3>
+
+                    <p>
+                        Conception d'un robot capable de recevoir
+                        des commandes vocales, de communiquer avec
+                        son utilisateur et d'effectuer différentes actions.
+                    </p>
+
+                    <a href="projets/robot.html" class="project-link">Voir le projet →</a>
+
+                </div>
+
+            </article>
+
+            <!-- PROJET 2 -->
+
+            <article class="project-card">
+
+                <div class="project-image">
+                    <img src="images/projet-drone.png" alt="Drone pulvérisateur agricole intelligent">
+                </div>
+
+                <div class="project-content">
+
+                    <span class="project-number">PROJET 02</span>
+
+                    <h3>Drone pulvérisateur agricole intelligent</h3>
+
+                    <p>
+                        Système autonome destiné à assister les activités
+                        agricoles grâce à l'électronique embarquée,
+                        aux capteurs et à l'intelligence artificielle.
+                    </p>
+
+                    <a href="projets/drone.html" class="project-link">Voir le projet →</a>
+
+                </div>
+
+            </article>
+
+            <!-- PROJET 3 -->
+
+            <article class="project-card">
+
+                <div class="project-image">
+                    <img src="images/projet-iot.png" alt="Système IoT et automatisation">
+                </div>
+
+                <div class="project-content">
+
+                    <span class="project-number">PROJET 03</span>
+
+                    <h3>IoT & automatisation</h3>
+
+                    <p>
+                        Développement de systèmes connectés utilisant
+                        des capteurs, microcontrôleurs et interfaces
+                        de commande pour automatiser différentes tâches.
+                    </p>
+
+                    <a href="projets/iot.html" class="project-link">Voir le projet →</a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <section id="apropos" class="about">
+
+        <div class="about-content">
+
+            <p class="eyebrow">À PROPOS DE NAIT</p>
+
+            <h2>Transformer les idées en solutions technologiques.</h2>
+
+            <p>
+                <strong>Nova AI Technology (NAIT)</strong> est une initiative
+                technologique orientée vers la conception et le développement
+                de solutions innovantes dans les domaines du Génie Électrique
+                et de l'Informatique Industrielle.
+            </p>
+
+            <p>
+                Notre approche combine l'électricité, l'électronique,
+                la programmation, les systèmes embarqués, l'automatisation,
+                l'IoT, la robotique et l'intelligence artificielle.
+            </p>
+
+            <div class="about-founder">
+
+                <div class="about-founder-image">
+                    <img src="images/steve-fc.png" alt="Steve FC">
+                </div>
+
+                <div class="about-founder-text">
+                    <h3>Steve FC</h3>
+                    <p>Fondateur de Nova AI Technology</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="about-values">
+
+            <div class="value-card">
+                <span>01</span>
+                <h3>Innovation</h3>
+                <p>
+                    Explorer de nouvelles technologies pour créer
+                    des solutions adaptées aux besoins réels.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <span>02</span>
+                <h3>Ingénierie</h3>
+                <p>
+                    Concevoir des systèmes en combinant théorie,
+                    programmation, électronique et automatisation.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <span>03</span>
+                <h3>Intelligence</h3>
+                <p>
+                    Utiliser les données, les capteurs et l'intelligence
+                    artificielle pour rendre les systèmes plus autonomes.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="contact" class="contact">
+
+        <div class="contact-intro">
+
+            <p class="eyebrow">CONTACTEZ-NOUS</p>
+
+            <h2>Parlons de votre <span>projet.</span></h2>
+
+            <p>
+                Vous avez une idée, un projet électronique,
+                un système automatisé ou une solution intelligente
+                à développer ? Échangeons ensemble.
+            </p>
+
+            <div class="contact-info">
+
+                <a href="tel:652396897" class="contact-item">
+                    <div class="contact-icon">☎</div>
+                    <div>
+                        <span>Téléphone</span>
+                        <strong>652 396 897</strong>
+                    </div>
+                </a>
+
+                <a href="tel:692830790" class="contact-item">
+                    <div class="contact-icon">☎</div>
+                    <div>
+                        <span>Téléphone</span>
+                        <strong>692 830 790</strong>
+                    </div>
                 </a>
 
             </div>
 
-        </article>
-
-
-        <!-- PROJET 2 -->
-
-        <article class="project-card">
-
-            <div class="project-image">
-                <img
-                    src="images/projet-drone.png"
-                    alt="Drone pulvérisateur agricole intelligent"
-                >
-            </div>
-
-            <div class="project-content">
-
-                <span class="project-number">
-                    PROJET 02
-                </span>
-
-                <h3>
-                    Drone pulvérisateur agricole intelligent
-                </h3>
-
-                <p>
-                    Système autonome destiné à assister les activités
-                    agricoles grâce à l'électronique embarquée,
-                    aux capteurs et à l'intelligence artificielle.
-                </p>
-
-                <a href="projets/drone.html" class="project-link">
-                    Voir le projet →
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- PROJET 3 -->
-
-        <article class="project-card">
-
-            <div class="project-image">
-                <img
-                    src="images/projet-iot.png"
-                    alt="Système IoT et automatisation"
-                >
-            </div>
-
-            <div class="project-content">
-
-                <span class="project-number">
-                    PROJET 03
-                </span>
-
-                <h3>
-                    IoT & automatisation
-                </h3>
-
-                <p>
-                    Développement de systèmes connectés utilisant
-                    des capteurs, microcontrôleurs et interfaces
-                    de commande pour automatiser différentes tâches.
-                </p>
-
-                <a href="projets/iot.html" class="project-link">
-                    Voir le projet →
-                </a>
-
-            </div>
-
-        </article>
-
-
-    </div>
-
-</section>
-<section id="apropos" class="about">
-
-    <div class="about-content">
-
-        <p class="eyebrow">À PROPOS DE NAIT</p>
-
-        <h2>
-            Transformer les idées
-            en solutions technologiques.
-        </h2>
-
-        <p>
-            <strong>Nova AI Technology (NAIT)</strong> est une initiative
-            technologique orientée vers la conception et le développement
-            de solutions innovantes dans les domaines du Génie Électrique
-            et de l'Informatique Industrielle.
-        </p>
-
-        <p>
-            Notre approche combine l'électricité, l'électronique,
-            la programmation, les systèmes embarqués, l'automatisation,
-            l'IoT, la robotique et l'intelligence artificielle.
-        </p>
-
-        <div class="about-founder">
-
-            <div class="about-founder-image">
-
-                <img
-                    src="images/steve-fc.png"
-                    alt="Steve FC"
-                >
-
-            </div>
-
-            <div class="about-founder-text">
-
-                <h3>Steve FC</h3>
-
-                <p>
-                    Fondateur de Nova AI Technology
-                </p>
-
-            </div>
-
         </div>
 
-    </div>
+        <div class="contact-form-container">
 
+            <form class="contact-form" id="contact-form" action="https://formspree.io/f/mljdjpjg" method="POST" novalidate>
 
-    <div class="about-values">
-
-        <div class="value-card">
-
-            <span>01</span>
-
-            <h3>Innovation</h3>
-
-            <p>
-                Explorer de nouvelles technologies pour créer
-                des solutions adaptées aux besoins réels.
-            </p>
-
-        </div>
-
-
-        <div class="value-card">
-
-            <span>02</span>
-
-            <h3>Ingénierie</h3>
-
-            <p>
-                Concevoir des systèmes en combinant théorie,
-                programmation, électronique et automatisation.
-            </p>
-
-        </div>
-
-
-        <div class="value-card">
-
-            <span>03</span>
-
-            <h3>Intelligence</h3>
-
-            <p>
-                Utiliser les données, les capteurs et l'intelligence
-                artificielle pour rendre les systèmes plus autonomes.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-<section id="contact" class="contact">
-
-    <div class="contact-intro">
-
-        <p class="eyebrow">CONTACTEZ-NOUS</p>
-
-        <h2>
-            Parlons de votre
-            <span>projet.</span>
-        </h2>
-
-        <p>
-            Vous avez une idée, un projet électronique,
-            un système automatisé ou une solution intelligente
-            à développer ? Échangeons ensemble.
-        </p>
-
-
-        <div class="contact-info">
-
-            <a href="tel:652396897" class="contact-item">
-
-                <div class="contact-icon">
-                    ☎
+                <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
                 </div>
 
-                <div>
-                    <span>Téléphone</span>
-                    <strong>652 396 897</strong>
+                <div class="form-group">
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" placeholder="votre@email.com" required>
                 </div>
 
-            </a>
-
-
-            <a href="tel:692830790" class="contact-item">
-
-                <div class="contact-icon">
-                    ☎
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Décrivez votre projet..." required></textarea>
                 </div>
 
-                <div>
-                    <span>Téléphone</span>
-                    <strong>692 830 790</strong>
-                </div>
+                <button type="submit" class="btn-primary" id="submit-button">Envoyer le message →</button>
+                <p id="form-message"></p>
 
-            </a>
+            </form>
 
         </div>
 
-    </div>
-
-
-    <div class="contact-form-container">
-
-        <form
-            class="contact-form"
-            id="contact-form"
-            action="https://formspree.io/f/mljdjpjg"
-            method="POST"
-            novalidate
-        >
-
-            <div class="form-group">
-
-                <label for="nom">Nom</label>
-
-                <input
-                    type="text"
-                    id="nom"
-                    name="nom"
-                    placeholder="Votre nom"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="email">Adresse e-mail</label>
-
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="votre@email.com"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label for="message">Message</label>
-
-                <textarea
-                    id="message"
-                    name="message"
-                    rows="6"
-                    placeholder="Décrivez votre projet..."
-                    required
-                ></textarea>
-
-            </div>
-
-
-            <button type="submit" class="btn-primary" id="submit-button">
-                Envoyer le message →
-            </button>
-            <p id="form-message"></p>
-
-        </form>
-
-    </div>
-
-</section>
+    </section>
 
 </main>
+
 <footer>
 
     <div class="footer-content">
@@ -594,70 +638,136 @@
         <div class="footer-brand">
 
             <a href="#accueil" class="logo">
-
-                <img
-                    src="images/logo-nait.png"
-                    alt="Logo Nova AI Technology"
-                >
-
+                <img src="images/logo-nait.png" alt="Logo Nova AI Technology">
                 <span>NAIT</span>
-
             </a>
 
-            <p>
-                Nova AI Technology
-            </p>
+            <p>Nova AI Technology</p>
 
-            <p>
-                Innovation · Électronique · Automatisation · IA
-            </p>
+            <p>Innovation · Électronique · Automatisation · IA</p>
 
         </div>
 
-
         <div class="footer-links">
-
             <h3>Navigation</h3>
-
             <a href="#accueil">Accueil</a>
+            <a href="#electricite">Électricité</a>
             <a href="#services">Services</a>
             <a href="#projets">Projets</a>
             <a href="#apropos">À propos</a>
             <a href="#contact">Contact</a>
-
         </div>
 
-
         <div class="footer-contact">
-
             <h3>Contact</h3>
-
-            <a href="tel:652396897">
-                652 396 897
-            </a>
-
-            <a href="tel:692830790">
-                692 830 790
-            </a>
-
+            <a href="tel:652396897">652 396 897</a>
+            <a href="tel:692830790">692 830 790</a>
         </div>
 
     </div>
 
-
     <div class="footer-bottom">
-
-        <p>
-            © 2026 Nova AI Technology — Tous droits réservés.
-        </p>
-
-        <p>
-            Fondé par <strong>Steve FC</strong>
-        </p>
-
+        <p>© 2026 Nova AI Technology — Tous droits réservés.</p>
+        <p>Fondé par <strong>Steve FC</strong></p>
     </div>
 
 </footer>
+
+<!-- GUIDE DE NAVIGATION -->
+
+<dialog id="guide-dialog" aria-labelledby="guide-title">
+    <div class="guide-inner">
+
+        <div class="guide-head">
+            <h2 id="guide-title">Naviguer sur le site</h2>
+            <button type="button" class="guide-close" data-guide-close aria-label="Fermer le guide">×</button>
+        </div>
+
+        <p class="guide-intro">Un résumé rapide des rubriques. Touchez une ligne pour y aller directement.</p>
+
+        <ul class="guide-list">
+            <li><a href="#electricite"><strong>Installations électriques</strong><span>Domestique et industriel, avec la sécurité comme priorité.</span></a></li>
+            <li><a href="#univers-nait"><strong>Notre univers</strong><span>Une animation interactive de notre vision.</span></a></li>
+            <li><a href="#services"><strong>Services</strong><span>Nos domaines d'expertise : électronique, automatisme, IoT, robotique, IA.</span></a></li>
+            <li><a href="#projets"><strong>Projets</strong><span>Robot domotique, drone agricole et IoT, avec une page détaillée pour chacun.</span></a></li>
+            <li><a href="#apropos"><strong>À propos</strong><span>Qui nous sommes et nos valeurs.</span></a></li>
+            <li><a href="#contact"><strong>Contact</strong><span>Décrivez votre projet, nous vous répondons.</span></a></li>
+        </ul>
+
+        <p class="guide-tip">
+            💡 Une question ? <strong>NAIT AI</strong>, l'assistant en bas à droite, peut vous orienter
+            et préremplir le formulaire de contact pour vous.
+        </p>
+
+    </div>
+</dialog>
+
+<!-- NAIT AI : le widget est créé par js/nait-ai.js -->
+
+<script>
+(function () {
+    const dialog = document.getElementById("guide-dialog");
+    const openButton = document.getElementById("guide-open");
+
+    if (!dialog || !openButton || typeof dialog.showModal !== "function") {
+        // Navigateur sans <dialog> : le bouton mène simplement aux services.
+        openButton?.addEventListener("click", () => { location.hash = "services"; });
+        return;
+    }
+
+    openButton.addEventListener("click", () => dialog.showModal());
+
+    dialog.addEventListener("click", event => {
+        if (
+            event.target === dialog ||
+            event.target.closest("[data-guide-close]") ||
+            event.target.closest("a")
+        ) {
+            dialog.close();
+        }
+    });
+})();
+</script>
+
 <script src="js/script.js"></script>
+<script src="js/animation.js"></script>
+<script src="js/nait-ai.js"></script>
+<span id="nait-ai-ready"></span>
+
+<script>
+document.addEventListener("click", function (event) {
+
+    const lien = event.target.closest("a");
+
+    if (!lien) return;
+
+    if (
+        lien.href.includes("projets/robot.html") ||
+        lien.href.includes("projets/drone.html") ||
+        lien.href.includes("projets/iot.html")
+    ) {
+        sessionStorage.setItem("nait_position_accueil", window.scrollY);
+    }
+
+});
+
+window.addEventListener("pageshow", function () {
+
+    const position = sessionStorage.getItem("nait_position_accueil");
+
+    if (position !== null) {
+
+        window.scrollTo({
+            top: Number(position),
+            behavior: "instant"
+        });
+
+        sessionStorage.removeItem("nait_position_accueil");
+
+    }
+
+});
+</script>
+
 </body>
 </html>

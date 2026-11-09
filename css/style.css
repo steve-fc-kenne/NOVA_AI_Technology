@@ -67,24 +67,166 @@ nav a:hover {
    SECTION HERO
    ========================= */
 
+
+/* =========================
+   SECTION HERO
+========================= */
+
 .hero {
     min-height: calc(100vh - 80px);
-
-    padding: 100px 7%;
+    padding: 80px 7%;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    gap: 60px;
+    gap: clamp(35px, 5vw, 70px);
 
     background:
         radial-gradient(
             circle at 80% 40%,
-            rgba(19, 184, 255, 0.18),
+            rgba(19, 184, 255, 0.16),
             transparent 35%
         );
 }
+
+/* TEXTE */
+
+.hero-content {
+    max-width: 650px;
+    flex: 1;
+}
+
+.eyebrow {
+    color: #13b8ff;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(46px, 5.2vw, 70px);
+    line-height: 1.08;
+    margin-bottom: 28px;
+    letter-spacing: -2.5px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #13b8ff;
+}
+
+.description {
+    color: #aebbd0;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+    max-width: 590px;
+}
+
+.description strong {
+    color: white;
+}
+
+/* BOUTONS */
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 22px;
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #13b8ff;
+    color: #03111d;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(19, 184, 255, 0.25);
+}
+
+.btn-secondary {
+    border: 1px solid #39506c;
+    color: white;
+}
+
+.btn-secondary:hover {
+    border-color: #13b8ff;
+    color: #13b8ff;
+    transform: translateY(-3px);
+}
+
+/* PHOTO DU FONDATEUR */
+
+.hero-photo {
+    position: relative;
+    width: min(38%, 430px);
+    flex-shrink: 0;
+}
+
+.photo-container {
+    width: 100%;
+    height: 520px;
+
+    overflow: hidden;
+    border-radius: 25px;
+
+    border: 2px solid #13b8ff;
+    background-color: #07111f;
+
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+}
+
+.photo-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.founder {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    right: 20px;
+
+    padding: 15px 20px;
+
+    background-color: rgba(5, 11, 22, 0.88);
+    backdrop-filter: blur(10px);
+
+    border-radius: 10px;
+    border-left: 4px solid #ff8a00;
+}
+
+.founder h2 {
+    font-size: 24px;
+    margin-bottom: 2px;
+}
+
+.founder p {
+    color: #13b8ff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 
 
 /* =========================
@@ -821,15 +963,52 @@ footer {
    RESPONSIVE - TABLETTE
 ========================= */
 
+
+/* =========================
+   MENU HAMBURGER
+========================= */
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+/* =========================
+   RESPONSIVE - TABLETTE
+========================= */
+
 @media (max-width: 900px) {
 
+   
+    /* HERO - TABLETTE */
+
     .hero {
+        min-height: auto;
+        padding: 75px 6%;
+
         flex-direction: column;
         text-align: center;
+        gap: 45px;
     }
 
     .hero-content {
-        max-width: 800px;
+        width: 100%;
+        max-width: 760px;
+    }
+
+    .hero h1 {
+        font-size: clamp(48px, 7vw, 62px);
+    }
+
+    .description {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .buttons {
@@ -837,13 +1016,14 @@ footer {
     }
 
     .hero-photo {
-        width: 380px;
+        width: min(70%, 380px);
     }
 
     .photo-container {
-        width: 380px;
+        width: 100%;
         height: 460px;
     }
+
 
     .about {
         grid-template-columns: 1fr;
@@ -866,19 +1046,40 @@ footer {
     }
 
 }
+
+
 /* =========================
    RESPONSIVE - SMARTPHONE
 ========================= */
 
 @media (max-width: 600px) {
-    nav.active {
-        display: flex;
-    }
+
+    /* NAVIGATION */
+
     header {
+        min-height: 75px;
         height: auto;
-        padding: 15px 5%;
-        flex-direction: column;
-        gap: 15px;
+        padding: 12px 5%;
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .menu-toggle {
+        display: block;
     }
 
     nav {
@@ -887,43 +1088,80 @@ footer {
         flex-direction: column;
         align-items: center;
         gap: 20px;
+        padding: 15px 0;
+    }
+
+    nav.active {
+        display: flex;
     }
 
     nav a {
-        font-size: 14px;
+        font-size: 15px;
     }
 
-    .menu-toggle {
-        display: block;
-    }
-
-    /* ...le reste de tes règles smartphone... */
-
-}
 
     /* ACCUEIL */
 
+    
+    /* HERO - SMARTPHONE */
+
     .hero {
-        padding: 70px 5%;
+        min-height: auto;
+        padding: 65px 5%;
+
+        flex-direction: column;
+        text-align: center;
+        gap: 38px;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .eyebrow {
+        font-size: 11px;
+        letter-spacing: 2px;
+        margin-bottom: 18px;
     }
 
     .hero h1 {
-        font-size: 45px;
-        letter-spacing: -2px;
+        font-size: clamp(36px, 9vw, 45px);
+        line-height: 1.12;
+        letter-spacing: -1.5px;
+        margin-bottom: 22px;
     }
 
     .description {
-        font-size: 16px;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 27px;
+    }
+
+    .buttons {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 13px 16px;
+        font-size: 14px;
     }
 
     .hero-photo {
         width: 100%;
-        max-width: 350px;
+        max-width: 320px;
     }
 
     .photo-container {
         width: 100%;
-        height: 420px;
+        height: 380px;
+    }
+
+    .founder {
+        bottom: 18px;
+        left: 15px;
+        right: 15px;
     }
 
 
@@ -997,6 +1235,7 @@ footer {
     }
 
 }
+
 /* =========================
    MENU HAMBURGER
 ========================= */
@@ -1009,6 +1248,7 @@ footer {
     font-size: 28px;
     cursor: pointer;
 }
+
 /* =========================
    PAGE DÉTAIL PROJET
 ========================= */
@@ -1018,10 +1258,12 @@ footer {
     background-color: #050b16;
 }
 
+/* TITRE PRINCIPAL */
+
 .project-detail > h1 {
     max-width: 900px;
-    font-size: 65px;
-    line-height: 1.05;
+    font-size: clamp(36px, 5vw, 65px);
+    line-height: 1.08;
     margin-bottom: 25px;
 }
 
@@ -1029,35 +1271,52 @@ footer {
     color: #13b8ff;
 }
 
+/* INTRODUCTION */
+
 .project-intro {
     max-width: 750px;
     color: #aebbd0;
-    font-size: 19px;
+    font-size: clamp(16px, 1.5vw, 19px);
     line-height: 1.8;
     margin-bottom: 60px;
 }
 
+/* GRILLE DU PROJET */
+
 .project-detail-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 50px;
     align-items: start;
 }
 
+/* IMAGE */
+
 .project-detail-image {
+    width: 100%;
     overflow: hidden;
     border-radius: 18px;
     border: 1px solid #20334d;
+    background-color: #07111f;
 }
 
 .project-detail-image img {
     width: 100%;
+    height: auto;
     display: block;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
+
+.project-detail-image:hover img {
+    transform: scale(1.03);
+}
+
+/* TEXTE DU PROJET */
 
 .project-detail-text h2,
 .project-objective h2 {
-    font-size: 30px;
+    font-size: clamp(23px, 2.5vw, 30px);
     margin-bottom: 18px;
 }
 
@@ -1074,6 +1333,8 @@ footer {
     line-height: 2;
 }
 
+/* OBJECTIF DU PROJET */
+
 .project-objective {
     max-width: 850px;
     margin: 70px 0 40px;
@@ -1081,4 +1342,1030 @@ footer {
     background-color: #07111f;
     border-left: 4px solid #ff8a00;
     border-radius: 10px;
+}
+
+/* =========================
+   TABLETTES
+========================= */
+
+@media (max-width: 900px) {
+
+    .project-detail {
+        padding: 85px 5%;
+    }
+
+    .project-detail-grid {
+        gap: 30px;
+    }
+
+    .project-intro {
+        margin-bottom: 40px;
+    }
+
+}
+
+/* =========================
+   SMARTPHONES
+========================= */
+
+@media (max-width: 650px) {
+
+    .project-detail {
+        padding: 65px 6%;
+    }
+
+    .project-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .project-intro {
+        margin-bottom: 35px;
+    }
+
+    .project-detail-image {
+        border-radius: 14px;
+    }
+
+    .project-objective {
+        margin: 45px 0 30px;
+        padding: 22px;
+    }
+
+}
+
+/* =====================================================
+   AMELIORATION TYPOGRAPHIQUE ET ALIGNEMENT DE L'ANIMATION
+   ===================================================== */
+
+/* En-tête de la section */
+.nait-journey-header {
+    max-width: 950px;
+    margin: 0 auto 45px;
+    padding: 0 15px;
+    text-align: center;
+}
+
+.nait-journey-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.35;
+    letter-spacing: 0.5px;
+    margin-bottom: 22px;
+}
+
+.nait-journey-header p {
+    max-width: 780px;
+    margin: 0 auto;
+    font-size: 1.08rem;
+    line-height: 1.9;
+    letter-spacing: 0.2px;
+}
+
+/* Zone d'explication */
+.nait-info-panel {
+    text-align: center;
+    padding: 30px 25px;
+    margin: 28px auto 0;
+}
+
+.nait-info-panel h3 {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+.nait-info-panel p {
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    letter-spacing: 0.2px;
+}
+
+/* Centrer les commandes d'exploration */
+.nait-controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+}
+
+/* Boutons de navigation */
+.nait-control-btn {
+    min-width: 145px;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+    line-height: 1.5;
+}
+
+/* Affichage sur smartphone */
+@media (max-width: 600px) {
+
+    .nait-journey-header h2 {
+        font-size: 1.8rem;
+        line-height: 1.4;
+    }
+
+    .nait-journey-header p {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+
+    .nait-info-panel {
+        padding: 22px 16px;
+    }
+
+    .nait-info-panel p {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+
+    .nait-controls {
+        gap: 12px;
+    }
+
+    .nait-control-btn {
+        min-width: 125px;
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+}
+
+/* CORRECTION FORCEE DES COULEURS NAIT */
+
+.nait-journey .nait-journey-header h2 {
+    color: #dce5ef !important;
+}
+
+.nait-journey .nait-journey-header p {
+    color: #9eafc2 !important;
+}
+
+.nait-journey .nait-info-panel h3 {
+    color: #69b9d5 !important;
+}
+
+.nait-journey .nait-info-panel p {
+    color: #9eafc2 !important;
+}
+
+.nait-journey .nait-control-btn {
+    color: #b8c7d6 !important;
+}
+
+.nait-journey .nait-journey-header .eyebrow {
+    color: #8299b2 !important;
+}
+/* =========================
+   VISION DU SYSTÈME
+========================= */
+
+.project-vision {
+    margin: 70px 0;
+}
+
+.project-vision h2 {
+    font-size: clamp(28px, 3vw, 36px);
+    margin-bottom: 20px;
+}
+
+.project-vision > p {
+    max-width: 700px;
+    color: #aebbd0;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.vision-card {
+    background: #07111f;
+    border: 1px solid #20334d;
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform .3s ease, border-color .3s ease;
+}
+
+.vision-card:hover {
+    transform: translateY(-6px);
+    border-color: #13b8ff;
+}
+
+.vision-card h3 {
+    margin-bottom: 12px;
+    color: #13b8ff;
+}
+
+.vision-card p {
+    color: #aebbd0;
+    line-height: 1.7;
+}
+
+/* =========================
+   ARCHITECTURE ROBOT NAIT
+========================= */
+
+.robot-architecture {
+    margin: 80px 0;
+}
+
+.architecture-heading {
+    max-width: 750px;
+    margin-bottom: 35px;
+}
+
+.architecture-heading h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.architecture-heading h2 span {
+    color: #13b8ff;
+}
+
+.architecture-heading > p:last-child {
+    color: #aebbd0;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   ARCHITECTURE ROBOT NAIT
+========================= */
+
+.robot-architecture {
+    width: 100%;
+    margin: 80px auto;
+}
+
+.architecture-heading {
+    max-width: 750px;
+    margin: 0 auto 35px;
+}
+
+.architecture-heading h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.architecture-heading h2 span {
+    color: #13b8ff;
+}
+
+.architecture-heading > p:last-child {
+    color: #aebbd0;
+    line-height: 1.8;
+}
+
+/* IMAGE CENTRÉE SUR PC */
+
+.architecture-image {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 12px;
+
+    background: #07111f;
+    border: 1px solid #20334d;
+    border-radius: 18px;
+
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.architecture-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.architecture-image figcaption {
+    padding: 16px 8px 6px;
+    color: #aebbd0;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* TABLETTES */
+
+@media (max-width: 900px) {
+
+    .robot-architecture {
+        margin: 60px auto;
+    }
+
+    .architecture-image {
+        max-width: 100%;
+    }
+
+}
+
+/* SMARTPHONES */
+
+@media (max-width: 650px) {
+
+    .robot-architecture {
+        margin: 45px auto;
+    }
+
+    .architecture-image {
+        padding: 7px;
+        border-radius: 12px;
+    }
+
+    .architecture-image figcaption {
+        font-size: 12px;
+    }
+
+}
+
+.architecture-image figcaption {
+    padding: 16px 8px 6px;
+    color: #aebbd0;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+
+    .robot-architecture {
+        margin: 55px 0;
+    }
+
+    .architecture-image {
+        padding: 7px;
+        border-radius: 12px;
+    }
+
+    .architecture-image figcaption {
+        font-size: 12px;
+    }
+
+}
+
+/* ================================
+   INTERFACE DE SUPERVISION IoT
+================================ */
+
+.iot-dashboard {
+    margin: 100px 0;
+}
+
+.dashboard-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 30px 0;
+    color: #a7b8ce;
+    font-size: 14px;
+}
+
+.status-indicator {
+    width: 9px;
+    height: 9px;
+    background: #38d996;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #38d996;
+}
+
+.iot-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.iot-metric {
+    padding: 25px;
+    background: #101b2d;
+    border: 1px solid #243751;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.iot-metric span {
+    color: #a7b8ce;
+    font-size: 14px;
+}
+
+.iot-metric strong {
+    color: #56b9ff;
+    font-size: 27px;
+}
+
+.iot-metric small {
+    color: #71849d;
+    font-size: 12px;
+}
+
+.iot-control-panel {
+    margin-top: 30px;
+    padding: 30px;
+    background: #101b2d;
+    border: 1px solid #243751;
+    border-radius: 18px;
+}
+
+.iot-control-panel h3 {
+    margin-bottom: 25px;
+}
+
+.iot-controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.iot-control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.iot-control span {
+    color: #dbe8f7;
+}
+
+.iot-toggle {
+    padding: 10px 18px;
+    border: 1px solid #34506f;
+    border-radius: 8px;
+    background: #17263c;
+    color: #a7c5e8;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.iot-toggle:hover {
+    border-color: #38aaff;
+}
+
+.iot-toggle.active {
+    background: #123d35;
+    border-color: #38d996;
+    color: #38d996;
+}
+
+.iot-demo-note {
+    margin-top: 20px;
+    text-align: center;
+    color: #71849d;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+
+    .iot-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .iot-controls {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .iot-metric {
+        padding: 18px;
+    }
+
+    .iot-metric strong {
+        font-size: 22px;
+    }
+
+    .iot-control-panel {
+        padding: 20px;
+    }
+
+}
+
+/* Illustration principale du projet IoT */
+.iot-hero-visual {
+    width: 100%;
+    max-width: 1200px;
+    margin: 50px auto;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(0, 195, 255, 0.35);
+    box-shadow: 0 0 35px rgba(0, 140, 255, 0.12);
+}
+
+.iot-hero-visual img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Adaptation smartphone */
+@media (max-width: 768px) {
+    .iot-hero-visual {
+        margin: 30px auto;
+        border-radius: 12px;
+    }
+}
+
+/* ==========================================
+   ACTIONS DE VISITE DES PROJETS NAIT
+========================================== */
+
+.nait-ai-project-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    max-width: 90%;
+    margin: 10px 0 14px 8px;
+    padding: 12px 16px;
+
+    color: #00bfff;
+    background: #071a33;
+    border: 1px solid #00bfff;
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.nait-ai-project-action:hover {
+    color: #071a33;
+    background: #00bfff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 16px rgba(0, 191, 255, 0.2);
+}
+
+.nait-ai-project-action:focus-visible {
+    outline: 2px solid #00e5c3;
+    outline-offset: 3px;
+}
+/* ==========================================
+   NAIT — SECTION INSTALLATIONS ÉLECTRIQUES
+========================================== */
+
+.elec-section {
+    --elec-cyan: #00bfff;
+    --elec-safety: #ffb020;
+    --elec-text: #eaf4ff;
+    --elec-muted: #9aadc5;
+    --elec-card: #0c1a2e;
+    --elec-line: rgba(0, 191, 255, 0.18);
+
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 90px 24px;
+    color: var(--elec-text);
+}
+
+.elec-heading {
+    max-width: 760px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.elec-heading h2 {
+    margin: 10px 0 16px;
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+    line-height: 1.2;
+}
+
+.elec-heading h2 span {
+    color: var(--elec-safety);
+}
+
+.elec-heading p {
+    color: var(--elec-muted);
+    line-height: 1.75;
+}
+
+/* ---------- Cartes domestique / industriel ---------- */
+
+.elec-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+.elec-card {
+    overflow: hidden;
+    border: 1px solid var(--elec-line);
+    border-radius: 22px;
+    background: var(--elec-card);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.elec-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 191, 255, 0.5);
+}
+
+.elec-photo {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background:
+        radial-gradient(circle at 30% 20%, rgba(0, 191, 255, 0.25), transparent 55%),
+        linear-gradient(135deg, #0b2340, #071223);
+}
+
+.elec-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.elec-photo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(7, 17, 31, 0.85), transparent 55%);
+}
+
+.elec-badge {
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    z-index: 1;
+    padding: 7px 14px;
+    border-radius: 30px;
+    background: var(--elec-safety);
+    color: #1a1200;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.elec-card-body {
+    padding: 26px 26px 30px;
+}
+
+.elec-card-body h3 {
+    margin: 0 0 10px;
+    font-size: 1.35rem;
+}
+
+.elec-card-body > p {
+    margin: 0 0 18px;
+    color: var(--elec-muted);
+    line-height: 1.7;
+}
+
+.elec-card-body ul {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.elec-card-body li {
+    position: relative;
+    padding-left: 26px;
+    color: #cfe0f5;
+    line-height: 1.55;
+}
+
+.elec-card-body li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--elec-cyan);
+    font-weight: 700;
+}
+
+/* ---------- Bandeau sécurité ---------- */
+
+.elec-safety {
+    margin-top: 40px;
+    padding: 38px 30px;
+    border: 1px solid rgba(255, 176, 32, 0.45);
+    border-radius: 22px;
+    background:
+        linear-gradient(135deg, rgba(255, 176, 32, 0.1), rgba(255, 176, 32, 0.02)),
+        var(--elec-card);
+}
+
+.elec-safety-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+
+.elec-safety-title .elec-warning {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: var(--elec-safety);
+    color: #1a1200;
+    font-size: 1.5rem;
+}
+
+.elec-safety-title h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.elec-safety > p {
+    max-width: 820px;
+    margin: 0 0 26px;
+    color: var(--elec-muted);
+    line-height: 1.7;
+}
+
+.elec-pillars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.elec-pillar {
+    padding: 20px;
+    border: 1px solid rgba(255, 176, 32, 0.25);
+    border-radius: 16px;
+    background: rgba(7, 17, 31, 0.6);
+}
+
+.elec-pillar strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--elec-safety);
+    font-size: 0.98rem;
+}
+
+.elec-pillar p {
+    margin: 0;
+    color: #cfe0f5;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+/* ---------- Méthode de travail ---------- */
+
+.elec-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: elec-step;
+}
+
+.elec-steps li {
+    position: relative;
+    padding: 56px 20px 22px;
+    border: 1px solid var(--elec-line);
+    border-radius: 16px;
+    background: var(--elec-card);
+    counter-increment: elec-step;
+}
+
+.elec-steps li::before {
+    content: counter(elec-step, decimal-leading-zero);
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    color: var(--elec-cyan);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.elec-steps strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.elec-steps span {
+    color: var(--elec-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* ---------- Appel à l'action ---------- */
+
+.elec-cta {
+    margin-top: 44px;
+    text-align: center;
+}
+
+.elec-cta p {
+    margin: 0 0 18px;
+    color: var(--elec-muted);
+}
+
+/* ---------- Adaptation écrans ---------- */
+
+@media (max-width: 960px) {
+    .elec-pillars,
+    .elec-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .elec-section {
+        padding: 60px 18px;
+    }
+
+    .elec-cards,
+    .elec-pillars,
+    .elec-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .elec-safety {
+        padding: 28px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .elec-card {
+        transition: none;
+    }
+
+    .elec-card:hover {
+        transform: none;
+    }
+}
+/* ==========================================
+   NAIT — BIENVENUE + GUIDE DE NAVIGATION
+========================================== */
+
+.welcome-note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 16px;
+    max-width: 640px;
+    margin: 0 0 22px;
+    padding: 12px 16px;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    border-radius: 16px;
+    background: rgba(0, 191, 255, 0.07);
+}
+
+.welcome-note p {
+    flex: 1 1 260px;
+    margin: 0;
+    color: #eaf4ff;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.guide-btn {
+    flex-shrink: 0;
+    padding: 9px 16px;
+    border: 1px solid #00bfff;
+    border-radius: 30px;
+    background: transparent;
+    color: #00bfff;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.guide-btn:hover,
+.guide-btn:focus-visible {
+    background: #00bfff;
+    color: #071a33;
+}
+
+/* ---------- Fenêtre du guide ---------- */
+
+#guide-dialog {
+    width: min(520px, calc(100vw - 32px));
+    max-height: calc(100vh - 48px);
+    padding: 0;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    border-radius: 20px;
+    background: #07111f;
+    color: #eaf4ff;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+    overflow: auto;
+}
+
+#guide-dialog::backdrop {
+    background: rgba(3, 8, 16, 0.7);
+}
+
+.guide-inner {
+    padding: 26px;
+}
+
+.guide-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.guide-head h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.guide-close {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.guide-intro {
+    margin: 0 0 18px;
+    color: #9aadc5;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.guide-list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.guide-list a {
+    display: block;
+    padding: 11px 14px;
+    border: 1px solid #1b3652;
+    border-radius: 12px;
+    background: #0c1c2e;
+    color: #eaf4ff;
+    text-decoration: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.guide-list a:hover,
+.guide-list a:focus-visible {
+    border-color: #00bfff;
+    background: #102b43;
+}
+
+.guide-list strong {
+    display: block;
+    font-size: 0.95rem;
+}
+
+.guide-list span {
+    color: #9aadc5;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.guide-tip {
+    margin: 16px 0 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(0, 229, 195, 0.08);
+    color: #bdeaff;
+    font-size: 0.86rem;
+    line-height: 1.55;
 }

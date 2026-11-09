@@ -1,0 +1,376 @@
+
+/* ==========================================
+   NAIT AI — INTERFACE CONVERSATIONNELLE
+========================================== */
+
+#nait-ai-widget {
+    --ai-blue: #071a33;
+    --ai-cyan: #00bfff;
+    --ai-turquoise: #00e5c3;
+    --ai-text: #eaf4ff;
+    --ai-muted: #9aadc5;
+
+    font-family: inherit;
+}
+
+/* Bouton flottant */
+
+#nait-ai-toggle {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px 22px;
+
+    border: 1px solid rgba(0, 191, 255, 0.4);
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #071a33,
+        #0c3155
+    );
+
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 30px rgba(0, 191, 255, 0.2),
+        inset 0 0 15px rgba(0, 191, 255, 0.04);
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#nait-ai-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 35px rgba(0, 191, 255, 0.3);
+}
+
+#nait-ai-widget .nait-ai-icon {
+    color: var(--ai-cyan);
+    font-size: 23px;
+}
+
+/* Fenêtre du chatbot */
+
+#nait-ai-window {
+    position: fixed;
+    right: 25px;
+    bottom: 95px;
+    z-index: 9998;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 380px;
+    max-width: calc(100vw - 30px);
+    height: 560px;
+    max-height: calc(100vh - 125px);
+
+    overflow: hidden;
+
+    border: 1px solid rgba(0, 191, 255, 0.22);
+    border-radius: 22px;
+
+    background: #07111f;
+    color: var(--ai-text);
+
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.5);
+
+    animation: nait-ai-appear 0.25s ease;
+}
+
+#nait-ai-window[hidden] {
+    display: none !important;
+}
+
+@keyframes nait-ai-appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* En-tête */
+
+#nait-ai-widget .nait-ai-header {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: auto;
+    padding: 17px;
+
+    background: linear-gradient(
+        135deg,
+        #071a33,
+        #0b2945
+    );
+
+    border-bottom: 1px solid rgba(0, 191, 255, 0.15);
+}
+
+#nait-ai-widget .nait-ai-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#nait-ai-widget .nait-ai-brand img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+#nait-ai-widget .nait-ai-brand h2 {
+    margin: 0;
+    color: white;
+    font-size: 17px;
+}
+
+#nait-ai-widget .nait-ai-brand p {
+    margin: 4px 0 0;
+    color: var(--ai-muted);
+    font-size: 12px;
+}
+
+#nait-ai-close {
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+
+    font-size: 23px;
+    cursor: pointer;
+}
+
+/* Zone des messages */
+
+#nait-ai-messages {
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    padding: 18px;
+
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+#nait-ai-messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+#nait-ai-messages::-webkit-scrollbar-thumb {
+    background: #203b59;
+    border-radius: 10px;
+}
+
+#nait-ai-widget .nait-ai-message {
+    max-width: 88%;
+    padding: 12px 14px;
+
+    border-radius: 15px;
+
+    font-size: 13.5px;
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+#nait-ai-widget .nait-ai-message-bot {
+    align-self: flex-start;
+
+    background: #10243a;
+    border: 1px solid #1b3652;
+
+    color: #dceaff;
+
+    border-bottom-left-radius: 5px;
+}
+
+#nait-ai-widget .nait-ai-message-user {
+    align-self: flex-end;
+
+    background: linear-gradient(
+        135deg,
+        #007fb8,
+        #00639b
+    );
+
+    color: white;
+
+    border-bottom-right-radius: 5px;
+}
+
+/* Suggestions */
+
+#nait-ai-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    padding: 0 16px 13px;
+}
+
+#nait-ai-suggestions button {
+    padding: 8px 11px;
+
+    border: 1px solid #21415e;
+    border-radius: 20px;
+
+    background: #0c1c2e;
+    color: #bdeaff;
+
+    font-size: 11px;
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#nait-ai-suggestions button:hover {
+    border-color: var(--ai-cyan);
+    background: #102b43;
+}
+
+/* Formulaire */
+
+#nait-ai-form {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 13px 15px;
+
+    border-top: 1px solid #1b2d42;
+    background: #081522;
+}
+
+#nait-ai-input {
+    flex: 1;
+    min-width: 0;
+
+    padding: 12px 14px;
+
+    border: 1px solid #203750;
+    border-radius: 25px;
+
+    outline: none;
+
+    background: #0c1c2d;
+    color: white;
+
+    font-family: inherit;
+    font-size: 13px;
+}
+
+#nait-ai-input:focus {
+    border-color: var(--ai-cyan);
+}
+
+#nait-ai-input::placeholder {
+    color: #71869f;
+}
+
+#nait-ai-send {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #00bfff,
+        #0085ff
+    );
+
+    color: white;
+    font-size: 18px;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#nait-ai-send:hover {
+    transform: scale(1.05);
+}
+
+/* Accessibilité */
+
+#nait-ai-widget button:focus-visible,
+#nait-ai-widget input:focus-visible {
+    outline: 2px solid var(--ai-cyan);
+    outline-offset: 3px;
+}
+
+/* Adaptation mobile */
+
+@media (max-width: 480px) {
+
+    #nait-ai-toggle {
+        right: 15px;
+        bottom: 15px;
+        padding: 13px 18px;
+    }
+
+    #nait-ai-window {
+        right: 10px;
+        bottom: 80px;
+
+        width: calc(100vw - 20px);
+        max-width: none;
+
+        height: min(600px, calc(100vh - 100px));
+        max-height: calc(100vh - 100px);
+
+        border-radius: 18px;
+    }
+
+    #nait-ai-messages {
+        padding: 14px;
+    }
+}
+.nait-ai-contact-action {
+    display: block;
+    width: 100%;
+    margin: 12px 0;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 10px;
+    background: #00bfff;
+    color: #071a33;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: opacity 0.2s ease;
+}
+
+.nait-ai-contact-action:hover {
+    opacity: 0.85;
+}
