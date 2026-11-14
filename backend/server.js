@@ -3,53 +3,24 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const Anthropic = require("@anthropic-ai/sdk");
-const Database = require("better-sqlite3");
-const fs = require("node:fs");
-const path = require("node:path");
+const { Pool } = require("pg");
 
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
+
 // ========================================
-// BASE DE DONNÉES SQLITE — NAIT AI
+// BASE DE DONNEES POSTGRESQL - NAIT AI
 // ========================================
 
-const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, "data");
-
-fs.mkdirSync(DATA_DIR, { recursive: true });
-
-const DATABASE_PATH = path.join(
-    DATA_DIR,
-    "nait_contacts.db"
-);
-
-const db = new Database(DATABASE_PATH);
-
-// Configuration SQLite
-db.pragma("journal_mode = WAL");
-db.pragma("busy_timeout = 5000");
-
-// Création de la table des demandes confirmées
-db.exec(`
-    CREATE TABLE IF NOT EXISTS contact_requests (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        session_id TEXT NOT NULL,
-        message TEXT NOT NULL,
-        created_at TEXT NOT NULL DEFAULT (
-            strftime('%Y-%m-%dT%H:%M:%fZ', 'now')
-        )
-    );
-`);
-
-// Préparation de la requête d'enregistrement
-const insertContact = db.prepare(`
-    INSERT INTO contact_requests (
-        session_id,
-        message
-    )
-    VALUES (?, ?)
-`);
-
-console.log("Base SQLite NAIT AI initialisée.");
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    },
+    max: 5,
+    idleTimeoutMillis: 30000,
+    connectionTimeoutMillis: 10000
+});
 // ========================================
 // MÉMOIRE DES SESSIONS NAIT AI
 // ========================================
@@ -1060,7 +1031,7 @@ Respecter le choix du visiteur.
 
 NAIT AI doit être un assistant intelligent, naturel, courtois et fiable, représentant exclusivement NOVA AI TECHNOLOGY.
 
-Sa priorité est de comprendre, simplifier, accompagner et orienter, sans pression commerciale, sans répétition inutile et sans promesse non confirmée.;
+Sa priorité est de comprendre, simplifier, accompagner et orienter, sans pression commerciale, sans répétition inutile et sans promesse non confirmée.`;
 // ========================================
 // PROTECTION : SUPPRESSION DES LIENS DE CLAUDE
 // ========================================
@@ -1178,10 +1149,18 @@ app.post("/api/chat", async (req, res) => {
             let savedContact;
 
             try {
-                savedContact = insertContact.run(
-                    sessionId,
-                    approvedContact
+                const result = await pool.query(
+                    `INSERT INTO contact_requests (
+                        session_id,
+                        message
+                    )
+                    VALUES ($1, $2)
+                    RETURNING id`,
+                    [sessionId, approvedContact]
                 );
+
+                savedContact = result.rows[0];
+
             } catch (error) {
 
                 console.error(
@@ -1194,7 +1173,6 @@ app.post("/api/chat", async (req, res) => {
                     error: "Impossible d'enregistrer votre demande pour le moment."
                 });
             }
-
             session.contactValidated = true;
             session.pendingContact = null;
             session.pendingContactStatus = null;
@@ -1210,7 +1188,7 @@ app.post("/api/chat", async (req, res) => {
 
             sendSseEvent(res, "contact_ready", {
                 message: approvedContact,
-                contactId: Number(savedContact.lastInsertRowid)
+                contactId: Number(savedContact.id)
             });
 
             sendSseEvent(res, "message", {
@@ -1428,47 +1406,104 @@ if (
 // 13. DÉMARRAGE DU SERVEUR NAIT AI
 // ========================================
 
-const server = app.listen(PORT, () => {
-    console.log("--------------------------------");
-    console.log(" NOVA AI TECHNOLOGY");
-    console.log(" NAIT AI - CLAUDE CONNECTÉ");
-    console.log(` http://localhost:${PORT}`);
-    console.log("--------------------------------");
-});
+let server = null;
+let shuttingDown = false;
 
 // ========================================
-// 14. GESTION DES ERREURS DU SERVEUR
+// INITIALISATION ET DEMARRAGE DE NAIT AI
 // ========================================
 
-server.on("error", (error) => {
-    if (error.code === "EADDRINUSE") {
-        console.error(
-            `Le port ${PORT} est déjà utilisé par un autre programme.`
-        );
-    } else {
-        console.error("Erreur du serveur :", error.message);
+async function startServer() {
+
+    if (!process.env.DATABASE_URL) {
+        throw new Error("La variable DATABASE_URL est absente.");
     }
 
-    process.exit(1);
-});
+    await pool.query(`
+        CREATE TABLE IF NOT EXISTS contact_requests (
+            id BIGSERIAL PRIMARY KEY,
+            session_id TEXT NOT NULL,
+            message TEXT NOT NULL,
+            created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        );
+    `);
 
-// ========================================
-// 15. ARRÊT PROPRE DU SERVEUR
-// ========================================
+    console.log("Base PostgreSQL NAIT AI initialisee.");
 
-function shutdown(signal) {
-    console.log(`\n${signal} reçu. Arrêt de NAIT AI...`);
-
-    server.close(() => {
-        console.log("Serveur NAIT AI arrêté.");
-        process.exit(0);
+    server = app.listen(PORT, () => {
+        console.log("--------------------------------");
+        console.log(" NOVA AI TECHNOLOGY");
+        console.log(" NAIT AI - CLAUDE CONNECTE");
+        console.log(` Port : ${PORT}`);
+        console.log("--------------------------------");
     });
 
-    setTimeout(() => {
-        console.error("Arrêt forcé du serveur.");
+    server.on("error", (error) => {
+        console.error("Erreur du serveur :", error.message);
         process.exit(1);
-    }, 10000).unref();
+    });
+}
+
+// ========================================
+// ARRET PROPRE DU SERVEUR
+// ========================================
+
+async function shutdown(signal) {
+
+    if (shuttingDown) return;
+
+    shuttingDown = true;
+
+    console.log(`${signal} recu. Arret de NAIT AI...`);
+
+    const forceTimer = setTimeout(() => {
+        console.error("Arret force du serveur.");
+        process.exit(1);
+    }, 10000);
+
+    try {
+
+        if (server) {
+            await new Promise((resolve, reject) => {
+                server.close((error) => {
+                    if (error) reject(error);
+                    else resolve();
+                });
+            });
+        }
+
+        await pool.end();
+
+        clearTimeout(forceTimer);
+
+        console.log("Serveur NAIT AI et connexions PostgreSQL arretes.");
+        process.exit(0);
+
+    } catch (error) {
+
+        clearTimeout(forceTimer);
+
+        console.error("Erreur pendant l'arret :", error.message);
+        process.exit(1);
+    }
 }
 
 process.on("SIGINT", () => shutdown("SIGINT"));
 process.on("SIGTERM", () => shutdown("SIGTERM"));
+
+// ========================================
+// LANCEMENT
+// ========================================
+
+startServer().catch(async (error) => {
+
+    console.error("Impossible de demarrer NAIT AI :", error.message);
+
+    try {
+        await pool.end();
+    } catch (closeError) {
+        console.error("Erreur de fermeture PostgreSQL :", closeError.message);
+    }
+
+    process.exit(1);
+});
