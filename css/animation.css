@@ -1,0 +1,368 @@
+
+/* =====================================================
+   NOVA AI TECHNOLOGY
+   UNIVERS INTERACTIF — VERSION OPTIMISÉE
+   Fichier : animation.css
+   ===================================================== */
+
+:root {
+    --nait-blue: #071a33;
+    --nait-blue-light: #0d2b50;
+    --nait-electric: #00bfff;
+    --nait-turquoise: #00e5c3;
+    --nait-white: #ffffff;
+    --nait-text: #aebed0;
+}
+
+/* 1. SECTION PRINCIPALE */
+
+.nait-journey {
+    position: relative;
+    width: 100%;
+    padding: 70px 20px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #12365d 0%,
+            var(--nait-blue) 75%
+        );
+
+    color: var(--nait-white);
+    font-family: inherit;
+}
+
+/* 2. EN-TÊTE */
+
+.nait-journey-header {
+    position: relative;
+    z-index: 5;
+    max-width: 850px;
+    margin: 0 auto 35px;
+    text-align: center;
+}
+
+.nait-journey-header .eyebrow {
+    color: #8fa9c4;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.nait-journey-header h2 {
+    margin-bottom: 15px;
+    color: #e6edf5;
+    font-size: clamp(1.7rem, 4vw, 2.8rem);
+    font-weight: 750;
+    letter-spacing: 1px;
+}
+
+.nait-journey-header p {
+    max-width: 650px;
+    margin: auto;
+    color: var(--nait-text);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* 3. SCÈNE VISUELLE */
+
+.nait-stage {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 1672 / 941;
+    margin: 0 auto;
+
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(101, 201, 237, 0.2);
+    border-radius: 14px;
+
+    background: #0b2039;
+}
+
+/* 4. ENVIRONNEMENT ET CAMÉRA */
+
+.nait-world {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    transform-origin: center center;
+    transition: transform 1.8s ease-in-out;
+    will-change: transform;
+}
+
+/* 5. IMAGE */
+
+.nait-world-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+
+    pointer-events: none;
+}
+
+/* 6. ÉCLAIRAGE VISUEL */
+
+.nait-stage::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+
+    pointer-events: none;
+
+    background: linear-gradient(
+        180deg,
+        rgba(4, 17, 35, 0.04),
+        transparent 55%,
+        rgba(4, 17, 35, 0.22)
+    );
+}
+
+/* 7. ZONES INTERACTIVES */
+
+.nait-hotspot {
+    position: absolute;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    border: 2px solid #65d8ff;
+    border-radius: 50%;
+
+    background: #087da8;
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 0 5px rgba(0, 191, 255, 0.15),
+        0 0 18px rgba(0, 191, 255, 0.45);
+
+    animation: nait-pulse 2s infinite;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.nait-hotspot:hover {
+    background: #ff8c00;
+    transform: scale(1.15);
+}
+
+.nait-hotspot:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 5px;
+}
+
+/* 8. PULSATION */
+
+@keyframes nait-pulse {
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(0, 191, 255, 0.6);
+    }
+
+    70% {
+        box-shadow:
+            0 0 0 15px rgba(0, 191, 255, 0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(0, 191, 255, 0);
+    }
+}
+
+/* 9. PANNEAU D'INFORMATIONS */
+
+.nait-info-panel {
+    position: relative;
+    z-index: 4;
+
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 20px auto 0;
+    padding: 22px;
+
+    border: 1px solid rgba(143, 169, 196, 0.18);
+    border-radius: 14px;
+
+    background: rgba(10, 34, 61, 0.85);
+
+    backdrop-filter: blur(10px);
+}
+
+.nait-info-panel h3 {
+    margin-bottom: 10px;
+    color: #65c9ed;
+    font-size: 1.2rem;
+    font-weight: 650;
+}
+
+.nait-info-panel p {
+    margin: 0;
+    color: var(--nait-text);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* 10. COMMANDES */
+
+.nait-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    max-width: 1100px;
+    margin: 25px auto 0;
+}
+
+.nait-control-btn {
+    padding: 12px 20px;
+
+    border: 1px solid rgba(101, 201, 237, 0.55);
+    border-radius: 8px;
+
+    background: transparent;
+    color: #c5d2df;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.nait-control-btn:hover {
+    background: var(--nait-electric);
+    color: var(--nait-blue);
+    transform: translateY(-2px);
+}
+
+.nait-control-btn:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+}
+
+/* 11. PROGRESSION */
+
+.nait-progress {
+    width: 100%;
+    max-width: 1100px;
+    height: 5px;
+
+    margin: 20px auto 0;
+
+    overflow: hidden;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.nait-progress-bar {
+    width: 0%;
+    height: 100%;
+
+    background: var(--nait-electric);
+    border-radius: inherit;
+
+    transition: width 0.5s ease;
+}
+
+/* 12. TABLETTES */
+
+@media screen and (max-width: 900px) {
+    .nait-journey {
+        padding: 55px 18px;
+    }
+
+    .nait-stage {
+        width: 100%;
+    }
+}
+
+/* 13. SMARTPHONES */
+
+@media screen and (max-width: 600px) {
+    .nait-journey {
+        padding: 42px 12px;
+    }
+
+    .nait-journey-header {
+        margin-bottom: 25px;
+    }
+
+    .nait-stage {
+        width: 100%;
+        aspect-ratio: 1672 / 941;
+        border-radius: 10px;
+    }
+
+    .nait-hotspot {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+
+    .nait-info-panel {
+        margin-top: 15px;
+        padding: 16px;
+    }
+
+    .nait-info-panel h3 {
+        font-size: 1.05rem;
+    }
+
+    .nait-info-panel p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .nait-controls {
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .nait-control-btn {
+        padding: 10px 13px;
+        font-size: 12px;
+    }
+}
+
+/* 14. ACCESSIBILITÉ */
+
+@media (prefers-reduced-motion: reduce) {
+    .nait-world,
+    .nait-hotspot,
+    .nait-control-btn,
+    .nait-progress-bar {
+        animation: none;
+        transition: none;
+    }
+}

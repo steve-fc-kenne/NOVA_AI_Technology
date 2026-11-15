@@ -1,51 +1,41 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 
 <head>
 
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Robot domotique intelligent | Nova AI Technology</title>
 
-    <title>Robot conversationnel | Nova AI Technology</title>
+    <meta name="description" content="Découvrez le robot domotique intelligent de Nova AI Technology : commande vocale, contrôle mobile, supervision en temps réel et automatisation intelligente de la maison.">
 
+    <meta name="author" content="Steve FC">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#050b16">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/nait-ai.css">
 
+    <!-- NAIT AI : attendre que le widget soit en place avant le premier affichage -->
+    <link rel="expect" href="#nait-ai-ready" blocking="render">
 </head>
-
 
 <body>
 
+    <!-- EN-TÊTE -->
+
     <header>
 
-        <a href="../index.html" class="logo">
-
-            <img
-                src="../images/logo-nait.png"
-                alt="Logo Nova AI Technology"
-            >
-
-            <span>NAIT</span>
-
+        <a href="../index.html#projets" class="btn-secondary" onclick="history.back(); return false;">
+            ← Retour aux projets
         </a>
 
-
         <nav>
-
             <a href="../index.html">Accueil</a>
-
             <a href="../index.html#services">Services</a>
-
             <a href="../index.html#projets">Projets</a>
-
             <a href="../index.html#apropos">À propos</a>
-
             <a href="../index.html#contact">Contact</a>
-
         </nav>
 
     </header>
@@ -55,75 +45,78 @@
 
         <section class="project-detail">
 
-            <p class="eyebrow">
-                PROJET 01 · ROBOTIQUE & IA
-            </p>
+            <!-- INTRODUCTION -->
+
+            <p class="eyebrow">PROJET 01 · ROBOTIQUE & DOMOTIQUE INTELLIGENTE</p>
 
             <h1>
-                Robot conversationnel
+                Robot domotique
                 <span>intelligent</span>
             </h1>
 
             <p class="project-intro">
-
-                Un système robotique capable d'interagir avec
-                son utilisateur, de comprendre des commandes
-                et d'effectuer différentes actions.
-
+                Une nouvelle manière d'interagir avec son
+                habitat : communiquer avec sa maison,
+                superviser ses équipements et piloter
+                intelligemment son environnement.
             </p>
 
 
+            <!-- PRÉSENTATION DU PROJET -->
+
+            <div class="project-detail-image">
+                <img src="../images/projet-robot.png" alt="Concept du robot domotique intelligent Nova AI Technology">
+            </div>
+
             <div class="project-detail-grid">
-
-                <div class="project-detail-image">
-
-                    <img
-                        src="../images/projet-robot.png"
-                        alt="Robot conversationnel intelligent"
-                    >
-
-                </div>
-
 
                 <div class="project-detail-text">
 
                     <h2>Présentation du projet</h2>
 
                     <p>
-
-                        Ce projet consiste à concevoir un robot
-                        conversationnel combinant informatique,
-                        électronique, communication sans fil
-                        et intelligence artificielle.
-
+                        Le robot domotique de Nova AI Technology
+                        est un système intelligent conçu pour
+                        centraliser le contrôle et l'automatisation
+                        des équipements d'une habitation.
                     </p>
 
                     <p>
-
-                        Le système doit pouvoir recevoir des
-                        informations provenant de l'utilisateur,
-                        les traiter et produire une réponse ou
-                        déclencher une action sur ses sorties.
-
+                        Grâce à l'interaction vocale et à une
+                        interface mobile, l'utilisateur pourra
+                        communiquer avec le système, transmettre
+                        des commandes et contrôler différents
+                        équipements électriques, électroniques
+                        et mécaniques de sa maison.
                     </p>
 
+                    <p>
+                        Un écran de supervision permettra également
+                        de visualiser en temps réel l'état des
+                        équipements et le comportement du système
+                        domotique.
+                    </p>
 
-                    <h2>Technologies</h2>
+                    <h2>Fonctionnalités envisagées</h2>
 
                     <ul>
+                        <li>Interaction conversationnelle par la voix</li>
+                        <li>Commande et supervision depuis un smartphone</li>
+                        <li>Visualisation en temps réel sur écran</li>
+                        <li>Contrôle des équipements domestiques</li>
+                        <li>Gestion des capteurs et des actionneurs</li>
+                        <li>Automatisation intelligente de l'habitat</li>
+                    </ul>
 
+                    <h2>Technologies envisagées</h2>
+
+                    <ul>
+                        <li>Microcontrôleurs et systèmes embarqués</li>
                         <li>Micro-ordinateur embarqué</li>
-
-                        <li>Microcontrôleur</li>
-
                         <li>Communication Wi-Fi</li>
-
-                        <li>Capteurs</li>
-
-                        <li>Actionneurs</li>
-
+                        <li>Capteurs et modules électroniques</li>
+                        <li>Relais et systèmes de commande</li>
                         <li>Intelligence artificielle</li>
-
                     </ul>
 
                 </div>
@@ -131,50 +124,129 @@
             </div>
 
 
-            <div class="project-objective">
+            <!-- ARCHITECTURE DU SYSTÈME -->
 
-                <h2>Objectif</h2>
+            <section class="robot-architecture">
+
+                <div class="architecture-heading">
+
+                    <p class="eyebrow">CONCEPTION & INGÉNIERIE</p>
+
+                    <h2>
+                        Architecture du système
+                        <span>NAIT</span>
+                    </h2>
+
+                    <p>
+                        Une organisation intégrée associant
+                        interface de supervision, électronique
+                        embarquée, capteurs, actionneurs et
+                        équipements connectés.
+                    </p>
+
+                </div>
+
+                <figure class="architecture-image">
+
+                    <img src="../images/robot-domotique-architecture.png" alt="Architecture physique et fonctionnelle du robot domotique intelligent NAIT" loading="lazy">
+
+                    <figcaption>
+                        Concept architectural du système
+                        domotique intelligent Nova AI Technology.
+                    </figcaption>
+
+                </figure>
+
+            </section>
+
+
+            <!-- VISION DU SYSTÈME -->
+
+            <section class="project-vision">
+
+                <h2>Vision du système</h2>
 
                 <p>
+                    Le robot agit comme un centre de contrôle
+                    intelligent capable de communiquer avec
+                    l'utilisateur et de coordonner les équipements
+                    connectés de la maison.
+                </p>
 
-                    Développer une plateforme robotique capable
-                    d'interagir avec son environnement et son
-                    utilisateur tout en exécutant des actions
-                    commandées.
+                <div class="vision-grid">
 
+                    <div class="vision-card">
+                        <h3>🎤 Voix</h3>
+                        <p>Comprendre les commandes vocales et dialoguer avec l'utilisateur.</p>
+                    </div>
+
+                    <div class="vision-card">
+                        <h3>📱 Mobile</h3>
+                        <p>Contrôler la maison depuis une application smartphone.</p>
+                    </div>
+
+                    <div class="vision-card">
+                        <h3>🖥️ Supervision</h3>
+                        <p>Afficher en temps réel l'état des équipements domestiques.</p>
+                    </div>
+
+                    <div class="vision-card">
+                        <h3>⚡ Automatisation</h3>
+                        <p>Déclencher des actions intelligentes selon les besoins de l'habitation.</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- OBJECTIF DU PROJET -->
+
+            <div class="project-objective">
+
+                <h2>Objectif du projet</h2>
+
+                <p>
+                    Concevoir un assistant robotique domotique
+                    capable de rendre l'habitat plus intelligent,
+                    interactif et autonome, en réunissant
+                    commande vocale, contrôle mobile,
+                    supervision visuelle et automatisation
+                    des équipements domestiques.
                 </p>
 
             </div>
-
-
-            <a
-                href="../index.html#projets"
-                class="btn-secondary"
-            >
-                ← Retour aux projets
-            </a>
 
         </section>
 
     </main>
 
 
+    <!-- NAIT AI : le widget est créé par ../js/nait-ai.js -->
+
+
+    <!-- PIED DE PAGE -->
+
     <footer>
+
+        <!-- RETOUR AUX PROJETS -->
+
+        <a href="../index.html#projets" class="btn-secondary" onclick="history.back(); return false;">
+            ← Retour aux projets
+        </a>
 
         <div class="footer-bottom">
 
-            <p>
-                © 2026 Nova AI Technology — Tous droits réservés.
-            </p>
+            <p>© 2026 Nova AI Technology — Tous droits réservés.</p>
 
-            <p>
-                Fondé par <strong>Steve FC</strong>
-            </p>
+            <p>Fondé par <strong>Steve FC</strong></p>
 
         </div>
 
     </footer>
 
+<script src="../js/nait-ai.js"></script>
+<span id="nait-ai-ready"></span>
 </body>
 
 </html>

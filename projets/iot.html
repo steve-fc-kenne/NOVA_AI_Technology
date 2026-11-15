@@ -5,40 +5,40 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>IoT & Automatisation | NAIT</title>
+    <!-- Référencement naturel (SEO) -->
+    <title>IoT & Automatisation intelligente | Nova AI Technology</title>
+
+    <meta name="description" content="Découvrez les concepts IoT et d'automatisation de Nova AI Technology : capteurs connectés, systèmes embarqués, communication sans fil et supervision intelligente.">
+
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Steve FC">
+    <meta name="theme-color" content="#0b1120">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/nait-ai.css">
 
+    <!-- NAIT AI : attendre que le widget soit en place avant le premier affichage -->
+    <link rel="expect" href="#nait-ai-ready" blocking="render">
 </head>
 
 <body>
 
+    <!-- EN-TÊTE -->
+
     <header>
 
-        <a href="../index.html" class="logo">
-
-            <img
-                src="../images/logo-nait.png"
-                alt="Logo Nova AI Technology"
-            >
-
-            <span>NAIT</span>
-
+        <a href="../index.html#projets" class="btn-secondary" onclick="history.back(); return false;">
+            ← Retour aux projets
         </a>
 
         <nav>
-
             <a href="../index.html">Accueil</a>
             <a href="../index.html#services">Services</a>
             <a href="../index.html#projets">Projets</a>
             <a href="../index.html#apropos">À propos</a>
             <a href="../index.html#contact">Contact</a>
-
         </nav>
 
     </header>
@@ -48,127 +48,353 @@
 
         <section class="project-detail">
 
-            <p class="eyebrow">
-                PROJET 03 · IoT & AUTOMATISATION
-            </p>
+            <!-- INTRODUCTION -->
+
+            <p class="eyebrow">PROJET 03 · IoT & AUTOMATISATION</p>
 
             <h1>
                 IoT &
-                <span>automatisation</span>
+                <span>automatisation intelligente</span>
             </h1>
 
             <p class="project-intro">
-
-                Des systèmes connectés capables d'acquérir
-                des informations, de les transmettre et
-                de commander différents équipements.
-
+                Connecter les équipements, collecter les données
+                et automatiser les actions pour créer des
+                environnements intelligents.
             </p>
 
 
+            <!-- PRÉSENTATION PRINCIPALE -->
+
+            <div class="project-detail-image">
+                <img src="../images/projet-iot.png" alt="Concept de système IoT et d'automatisation connectée">
+            </div>
+
             <div class="project-detail-grid">
-
-                <div class="project-detail-image">
-
-                    <img
-                        src="../images/projet-iot.png"
-                        alt="Système IoT et automatisation"
-                    >
-
-                </div>
-
 
                 <div class="project-detail-text">
 
                     <h2>Présentation du projet</h2>
 
                     <p>
-
-                        Ce domaine regroupe la conception de
-                        systèmes capables de communiquer avec
-                        leur environnement grâce à différents
-                        capteurs et interfaces de communication.
-
+                        L'Internet des objets (IoT) permet à des
+                        équipements physiques de collecter,
+                        transmettre et échanger des informations
+                        grâce à des systèmes électroniques
+                        et des réseaux de communication.
                     </p>
 
                     <p>
-
-                        Les données peuvent être acquises,
-                        traitées puis utilisées pour déclencher
-                        automatiquement certaines actions.
-
+                        Associées à l'automatisation, ces
+                        technologies permettent de surveiller
+                        un environnement, d'analyser des données
+                        et de commander des équipements à distance
+                        ou automatiquement.
                     </p>
 
-
-                    <h2>Technologies</h2>
+                    <h2>Technologies envisagées</h2>
 
                     <ul>
-
-                        <li>Arduino</li>
-
-                        <li>ESP32</li>
-
-                        <li>Capteurs</li>
-
-                        <li>Wi-Fi</li>
-
-                        <li>Communication de données</li>
-
-                        <li>Automatisation</li>
-
-                        <li>Interfaces de commande</li>
-
+                        <li>Arduino et ESP32</li>
+                        <li>Capteurs électroniques</li>
+                        <li>Wi-Fi et communication sans fil</li>
+                        <li>Modules de commande et relais</li>
+                        <li>Programmation embarquée</li>
+                        <li>Interfaces de supervision</li>
                     </ul>
 
                 </div>
 
             </div>
 
+            <!-- ARCHITECTURE TECHNIQUE -->
+
+            <section class="robot-architecture">
+
+                <div class="architecture-heading">
+
+                    <p class="eyebrow">FONCTIONNEMENT DU SYSTÈME</p>
+
+                    <h2>
+                        Architecture
+                        <span>IoT connectée</span>
+                    </h2>
+
+                    <p>
+                        De la mesure physique à la commande
+                        intelligente, chaque élément participe
+                        au fonctionnement du système.
+                    </p>
+
+                </div>
+
+                <section class="iot-hero-visual">
+                    <img src="../images/illustration-iot-nait.png" alt="Nova AI Technology : maison intelligente, surveillance et automatisation IoT" loading="lazy">
+                </section>
+
+                <div class="project-vision-grid">
+
+                    <article class="vision-card">
+                        <h3>01 · Acquisition</h3>
+                        <p>
+                            Les capteurs mesurent les paramètres
+                            physiques : température, humidité,
+                            luminosité, mouvement ou niveau d'eau.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>02 · Traitement</h3>
+                        <p>
+                            Un microcontrôleur comme l'ESP32
+                            ou l'Arduino analyse les informations
+                            et prend les décisions programmées.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>03 · Communication</h3>
+                        <p>
+                            Les données circulent entre les
+                            équipements et les interfaces grâce
+                            aux technologies de communication.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>04 · Supervision</h3>
+                        <p>
+                            Un ordinateur ou un smartphone
+                            permet de visualiser les données
+                            et de suivre l'état des équipements.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>05 · Automatisation</h3>
+                        <p>
+                            Des relais, moteurs et autres
+                            actionneurs exécutent les commandes
+                            selon les conditions définies.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>06 · Analyse</h3>
+                        <p>
+                            L'exploitation des données permet
+                            d'améliorer le suivi, la réactivité
+                            et les performances des installations.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- DOMAINES D'APPLICATION -->
+
+            <section class="project-vision">
+
+                <div class="architecture-heading">
+
+                    <p class="eyebrow">APPLICATIONS</p>
+
+                    <h2>
+                        Des solutions
+                        <span>connectées</span>
+                    </h2>
+
+                    <p>
+                        Des technologies adaptables à différents
+                        environnements et besoins.
+                    </p>
+
+                </div>
+
+                <div class="project-vision-grid">
+
+                    <article class="vision-card">
+                        <h3>Domotique</h3>
+                        <p>
+                            Surveillance et commande intelligente
+                            des équipements d'une habitation.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>Industrie</h3>
+                        <p>
+                            Suivi des installations, acquisition
+                            de données et automatisation
+                            de certains procédés.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>Environnement</h3>
+                        <p>
+                            Mesure et surveillance de paramètres
+                            comme la température, l'humidité
+                            et le niveau d'eau.
+                        </p>
+                    </article>
+
+                    <article class="vision-card">
+                        <h3>Agriculture intelligente</h3>
+                        <p>
+                            Surveillance des conditions
+                            environnementales et automatisation
+                            de systèmes d'irrigation.
+                        </p>
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- SUPERVISION IoT -->
+
+            <section class="iot-dashboard">
+
+                <div class="architecture-heading">
+
+                    <p class="eyebrow">SUPERVISION CONNECTÉE</p>
+
+                    <h2>
+                        Interface de
+                        <span>contrôle IoT</span>
+                    </h2>
+
+                    <p>
+                        Visualisation des données et commande
+                        des équipements connectés.
+                    </p>
+
+                </div>
+
+                <div class="dashboard-status">
+                    <span class="status-indicator"></span>
+                    Système simulé · En ligne
+                </div>
+
+                <!-- MESURES -->
+                <div class="iot-metrics">
+
+                    <article class="iot-metric">
+                        <span>Température</span>
+                        <strong><span id="iot-temperature">26.4</span> °C</strong>
+                        <small>Capteur thermique</small>
+                    </article>
+
+                    <article class="iot-metric">
+                        <span>Humidité</span>
+                        <strong><span id="iot-humidity">62</span> %</strong>
+                        <small>Capteur hygrométrique</small>
+                    </article>
+
+                    <article class="iot-metric">
+                        <span>Luminosité</span>
+                        <strong><span id="iot-light">740</span> lx</strong>
+                        <small>Capteur lumineux</small>
+                    </article>
+
+                    <article class="iot-metric">
+                        <span>Niveau d'eau</span>
+                        <strong><span id="iot-water">78</span> %</strong>
+                        <small>Réservoir simulé</small>
+                    </article>
+
+                </div>
+
+                <!-- COMMANDES -->
+                <div class="iot-control-panel">
+
+                    <h3>Commande des équipements</h3>
+
+                    <div class="iot-controls">
+
+                        <div class="iot-control">
+                            <div class="iot-control">
+                                <span>Éclairage</span>
+                                <button class="iot-toggle" data-device="light">Activer</button>
+                            </div>
+                        </div>
+
+                        <div class="iot-control">
+                            <div class="iot-control">
+                                <span>Ventilation</span>
+                                <button class="iot-toggle" data-device="fan">Activer</button>
+                            </div>
+                        </div>
+
+                        <div class="iot-control">
+                            <div class="iot-control">
+                                <span>Pompe à eau</span>
+                                <button class="iot-toggle" data-device="pump">Activer</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <p class="iot-demo-note">
+                    Démonstration interactive · Données fictives
+                </p>
+
+            </section>
+
+            <!-- OBJECTIF -->
 
             <div class="project-objective">
 
-                <h2>Objectif</h2>
+                <h2>Objectif du projet</h2>
 
                 <p>
-
-                    Concevoir des systèmes capables de mesurer,
-                    communiquer et agir automatiquement afin
-                    d'améliorer le contrôle et la supervision
-                    des équipements.
-
+                    Concevoir des systèmes électroniques
+                    intelligents capables de connecter
+                    les équipements, d'exploiter les données
+                    et d'automatiser des tâches pour améliorer
+                    le contrôle et la supervision des installations.
                 </p>
 
             </div>
-
-
-            <a
-                href="../index.html#projets"
-                class="btn-secondary"
-            >
-                ← Retour aux projets
-            </a>
 
         </section>
 
     </main>
 
 
+    <!-- NAIT AI : le widget est créé par ../js/nait-ai.js -->
+
+
+    <!-- PIED DE PAGE -->
+
     <footer>
+
+        <!-- RETOUR AUX PROJETS -->
+
+        <a href="../index.html#projets" class="btn-secondary" onclick="history.back(); return false;">
+            ← Retour aux projets
+        </a>
 
         <div class="footer-bottom">
 
-            <p>
-                © 2026 Nova AI Technology — Tous droits réservés.
-            </p>
+            <p>© 2026 Nova AI Technology — Tous droits réservés.</p>
 
-            <p>
-                Fondé par <strong>Steve FC</strong>
-            </p>
+            <p>Fondé par <strong>Steve FC</strong></p>
 
         </div>
 
     </footer>
 
+<script src="../js/script.js"></script>
+<script src="../js/animation.js"></script>
+<script src="../js/nait-ai.js"></script>
+<span id="nait-ai-ready"></span>
 </body>
 
 </html>
