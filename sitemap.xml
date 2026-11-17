@@ -1,15 +1,16 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://steve-fc-kenne.github.io/NOVA_AI_Technology/</loc>
+        <loc>https://nova-ai-technology.kennestevefc734.workers.dev/</loc>
     </url>
     <url>
-        <loc>https://steve-fc-kenne.github.io/NOVA_AI_Technology/projets/robot.html</loc>
+        <loc>https://nova-ai-technology.kennestevefc734.workers.dev/projets/robot.html</loc>
     </url>
     <url>
-        <loc>https://steve-fc-kenne.github.io/NOVA_AI_Technology/projets/drone.html</loc>
+        <loc>https://nova-ai-technology.kennestevefc734.workers.dev/projets/drone.html</loc>
     </url>
     <url>
-        <loc>https://steve-fc-kenne.github.io/NOVA_AI_Technology/projets/iot.html</loc>
+        <loc>https://nova-ai-technology.kennestevefc734.workers.dev/projets/iot.html</loc>
     </url>
 </urlset>

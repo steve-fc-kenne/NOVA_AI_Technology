@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://steve-fc-kenne.github.io/NOVA_AI_Technology/sitemap.xml
+Sitemap: https://nova-ai-technology.kennestevefc734.workers.dev/sitemap.xml
