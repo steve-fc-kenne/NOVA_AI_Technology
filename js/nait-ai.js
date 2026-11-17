@@ -1,7 +1,7 @@
-﻿/* ============================================================
-   NAIT AI â€” V4.5
+/* ============================================================
+   NAIT AI — V4.5
    Widget stable et fluide entre l'accueil et les pages projets.
-   Les modifications par rapport Ã  la V3 sont repÃ©rÃ©es par // [V4] / [V4.1] / [V4.2] / [V4.3] / [V4.4] / [V4.5]
+   Les modifications par rapport à la V3 sont repérées par // [V4] / [V4.1] / [V4.2] / [V4.3] / [V4.4] / [V4.5]
    IMPORTANT : ce script doit rester en fin de <body>.
    ============================================================ */
 
@@ -15,11 +15,11 @@ function initNaitAI() {
     const IS_PROJECT_PAGE = window.location.pathname.includes("/projets/");
     const BASE = IS_PROJECT_PAGE ? "../" : "";
 
-    // [V4] Le widget est crÃ©Ã© ici, une seule source pour toutes les pages.
-    // Il ne doit donc plus Ãªtre Ã©crit dans index.html ni dans les pages projets.
+    // [V4] Le widget est créé ici, une seule source pour toutes les pages.
+    // Il ne doit donc plus être écrit dans index.html ni dans les pages projets.
     // [V4.2] Pendant la restauration, aucune animation ne doit rejouer
-    // (ouverture de la fenÃªtre, apparition des messages) : c'est ce qui
-    // faisait Â« clignoter Â» le widget Ã  chaque changement de page.
+    // (ouverture de la fenêtre, apparition des messages) : c'est ce qui
+    // faisait « clignoter » le widget à chaque changement de page.
     if (!document.getElementById("nait-ai-runtime-style")) {
         const runtimeStyle = document.createElement("style");
         runtimeStyle.id = "nait-ai-runtime-style";
@@ -37,7 +37,7 @@ function initNaitAI() {
         document.body.insertAdjacentHTML("beforeend", `
 <div id="nait-ai-widget">
     <button id="nait-ai-toggle" type="button" aria-label="Ouvrir NAIT AI" aria-expanded="false" aria-controls="nait-ai-window">
-        <span class="nait-ai-icon">âœ¦</span>
+        <span class="nait-ai-icon">✦</span>
         <span>NAIT AI</span>
     </button>
 
@@ -51,7 +51,7 @@ function initNaitAI() {
                     <p id="nait-ai-status">Assistant technologique</p>
                 </div>
             </div>
-            <button id="nait-ai-close" type="button" aria-label="Fermer NAIT AI">Ã—</button>
+            <button id="nait-ai-close" type="button" aria-label="Fermer NAIT AI">×</button>
         </header>
 
         <div id="nait-ai-messages" aria-live="polite" aria-relevant="additions text">
@@ -62,15 +62,15 @@ function initNaitAI() {
         </div>
 
         <div id="nait-ai-suggestions">
-            <button type="button" data-message="PrÃ©sentez vos services">DÃ©couvrir nos services</button>
+            <button type="button" data-message="Présentez vos services">Découvrir nos services</button>
             <button type="button" data-message="Robot domotique">Robot domotique</button>
             <button type="button" data-message="Drone agricole">Drone agricole</button>
             <button type="button" data-message="Nous contacter">Nous contacter</button>
         </div>
 
         <form id="nait-ai-form">
-            <input id="nait-ai-input" type="text" placeholder="Ã‰crire un message..." autocomplete="off" aria-label="Votre message" required>
-            <button id="nait-ai-send" type="submit" aria-label="Envoyer le message">âž¤</button>
+            <input id="nait-ai-input" type="text" placeholder="Écrire un message..." autocomplete="off" aria-label="Votre message" required>
+            <button id="nait-ai-send" type="submit" aria-label="Envoyer le message">➤</button>
         </form>
 
     </section>
@@ -81,8 +81,8 @@ function initNaitAI() {
     // 1. CONFIGURATION
     // ==========================================
 
-    const API_URL = "https://nait-ai-backend.onrender.com/api/chat";
-    const STATUS_URL = "https://nait-ai-backend.onrender.com/api/status";
+    const API_URL = "http://localhost:3000/api/chat";
+    const STATUS_URL = "http://localhost:3000/api/status";
 
     const widget = document.getElementById("nait-ai-widget");
     const toggle = document.getElementById("nait-ai-toggle");
@@ -104,12 +104,12 @@ function initNaitAI() {
         !messagesContainer ||
         !sendButton
     ) {
-        console.error("NAIT AI : Ã©lÃ©ments HTML obligatoires introuvables.");
+        console.error("NAIT AI : éléments HTML obligatoires introuvables.");
         return;
     }
 
     // ==========================================
-    // 2. MÃ‰MOIRE ET IDENTIFICATION DE SESSION
+    // 2. MÉMOIRE ET IDENTIFICATION DE SESSION
     // ==========================================
 
     const HISTORY_STORAGE_KEY = "nait_ai_conversation_history";
@@ -117,17 +117,17 @@ function initNaitAI() {
     const SESSION_STORAGE_KEY = "nait_ai_session_id";
     const WINDOW_STATE_KEY = "nait_ai_window_open";
 
-    // [V4] Nouvelles clÃ©s
+    // [V4] Nouvelles clés
     const DRAFT_STORAGE_KEY = "nait_ai_draft";                 // texte en cours de saisie
     const SCROLL_STORAGE_KEY = "nait_ai_scroll";               // position de lecture
-    const PENDING_STORAGE_KEY = "nait_ai_pending_message";     // message dont la rÃ©ponse a Ã©tÃ© coupÃ©e
-    const CONTACT_PREFILL_KEY = "nait_ai_contact_prefill";     // message Ã  prÃ©remplir sur l'accueil
-    const HOME_SCROLL_KEY = "nait_position_accueil";           // clÃ© dÃ©jÃ  utilisÃ©e par index.html
+    const PENDING_STORAGE_KEY = "nait_ai_pending_message";     // message dont la réponse a été coupée
+    const CONTACT_PREFILL_KEY = "nait_ai_contact_prefill";     // message à préremplir sur l'accueil
+    const HOME_SCROLL_KEY = "nait_position_accueil";           // clé déjà utilisée par index.html
 
     const MAX_HISTORY = 20;
     const MAX_DISPLAY_ENTRIES = 100;
 
-    // Gestion sÃ©curisÃ©e de sessionStorage.
+    // Gestion sécurisée de sessionStorage.
     function storageGet(key) {
         try {
             return sessionStorage.getItem(key);
@@ -142,7 +142,7 @@ function initNaitAI() {
             sessionStorage.setItem(key, value);
             return true;
         } catch (error) {
-            console.warn("NAIT AI : Ã©criture du stockage impossible.", error);
+            console.warn("NAIT AI : écriture du stockage impossible.", error);
             return false;
         }
     }
@@ -155,7 +155,7 @@ function initNaitAI() {
         }
     }
 
-    // RÃ©cupÃ©rer uniquement un historique valide.
+    // Récupérer uniquement un historique valide.
     function loadConversationHistory() {
         try {
             const saved = JSON.parse(
@@ -212,13 +212,13 @@ function initNaitAI() {
     }
 
     // ==========================================
-    // 3. Ã‰TAT GÃ‰NÃ‰RAL
+    // 3. ÉTAT GÉNÉRAL
     // ==========================================
 
     let isLoading = false;
     let isOpen = false;
     let restoringTimer = null; // [V4.2]
-    let isLeaving = false; // [V4] vrai quand la page est en train d'Ãªtre quittÃ©e
+    let isLeaving = false; // [V4] vrai quand la page est en train d'être quittée
 
     let displayQueue = "";
     let displayTimer = null;
@@ -228,8 +228,8 @@ function initNaitAI() {
     // 4. OUVERTURE / FERMETURE
     // ==========================================
 
-    // [V4] focus : false Ã  la restauration (Ã©vite le clavier mobile Ã  chaque page)
-    // [V4] keepScroll : true quand on rÃ©tablit soi-mÃªme la position de lecture
+    // [V4] focus : false à la restauration (évite le clavier mobile à chaque page)
+    // [V4] keepScroll : true quand on rétablit soi-même la position de lecture
     function openChat({ focus = true, keepScroll = false } = {}) {
 
         windowChat.hidden = false;
@@ -240,7 +240,7 @@ function initNaitAI() {
 
         storageSet(WINDOW_STATE_KEY, "open");
 
-        // [V4] Un Ã©lÃ©ment masquÃ© n'a pas de dÃ©filement : on le fait une fois visible.
+        // [V4] Un élément masqué n'a pas de défilement : on le fait une fois visible.
         if (!keepScroll) {
             scrollToBottom();
         }
@@ -267,7 +267,7 @@ function initNaitAI() {
 
     closeButton?.addEventListener("click", closeChat);
 
-    // [V4] MÃ©moriser le brouillon de saisie.
+    // [V4] Mémoriser le brouillon de saisie.
     input.addEventListener("input", () => {
         storageSet(DRAFT_STORAGE_KEY, input.value);
     });
@@ -285,10 +285,10 @@ function initNaitAI() {
         }
     });
 
-    // [V4.1] Retour via le cache du navigateur (bouton Â« Retour aux projets Â»,
-    // flÃ¨che prÃ©cÃ©dente). La page est restaurÃ©e telle qu'elle Ã©tait AVANT la
+    // [V4.1] Retour via le cache du navigateur (bouton « Retour aux projets »,
+    // flèche précédente). La page est restaurée telle qu'elle était AVANT la
     // navigation : sans resynchronisation, elle afficherait l'ancienne
-    // conversation et Ã©craserait celle faite sur la page projet.
+    // conversation et écraserait celle faite sur la page projet.
     window.addEventListener("pageshow", event => {
 
         if (!event.persisted) return;
@@ -311,8 +311,8 @@ function initNaitAI() {
     // 5. AFFICHAGE DES MESSAGES
     // ==========================================
 
-    // [V4.3] DÃ©filement instantanÃ© : un Â« scroll-behavior: smooth Â» dans le CSS
-    // faisait glisser la conversation depuis le haut Ã  chaque changement de page.
+    // [V4.3] Défilement instantané : un « scroll-behavior: smooth » dans le CSS
+    // faisait glisser la conversation depuis le haut à chaque changement de page.
     function scrollMessagesTo(top) {
         messagesContainer.scrollTo({ top, behavior: "instant" });
     }
@@ -331,7 +331,7 @@ function initNaitAI() {
                 ? "nait-ai-message-user"
                 : "nait-ai-message-bot");
 
-        // textContent empÃªche l'interprÃ©tation de HTML reÃ§u.
+        // textContent empêche l'interprétation de HTML reçu.
         message.textContent = String(text);
 
         messagesContainer.appendChild(message);
@@ -346,7 +346,7 @@ function initNaitAI() {
     }
 
     // ==========================================
-    // 6. INDICATEUR DE RÃ‰FLEXION
+    // 6. INDICATEUR DE RÉFLEXION
     // ==========================================
 
     function showTyping() {
@@ -356,7 +356,7 @@ function initNaitAI() {
         typing.className =
             "nait-ai-message nait-ai-message-bot nait-ai-typing";
 
-        typing.textContent = "NAIT AI rÃ©flÃ©chit";
+        typing.textContent = "NAIT AI réfléchit";
 
         messagesContainer.appendChild(typing);
 
@@ -367,7 +367,7 @@ function initNaitAI() {
             dots = (dots + 1) % 4;
 
             typing.textContent =
-                "NAIT AI rÃ©flÃ©chit" + ".".repeat(dots);
+                "NAIT AI réfléchit" + ".".repeat(dots);
 
         }, 400);
 
@@ -395,7 +395,7 @@ function initNaitAI() {
     }
 
     // ==========================================
-    // 7. Ã‰TAT DE L'INTERFACE
+    // 7. ÉTAT DE L'INTERFACE
     // ==========================================
 
     function setLoading(state) {
@@ -405,13 +405,13 @@ function initNaitAI() {
         input.disabled = state;
         sendButton.disabled = state;
 
-        sendButton.textContent = state ? "â€¦" : "âž¤";
+        sendButton.textContent = state ? "…" : "➤";
 
         form.classList.toggle("nait-ai-loading", state);
     }
 
     // ==========================================
-    // 8. LECTURE SÃ‰CURISÃ‰E DU STREAMING CLAUDE
+    // 8. LECTURE SÉCURISÉE DU STREAMING CLAUDE
     // ==========================================
 
     async function readClaudeStream(
@@ -422,7 +422,7 @@ function initNaitAI() {
     ) {
 
         if (!response.body) {
-            throw new Error("Flux de rÃ©ponse indisponible.");
+            throw new Error("Flux de réponse indisponible.");
         }
 
         const reader = response.body.getReader();
@@ -431,7 +431,7 @@ function initNaitAI() {
         let buffer = "";
         let fullResponse = "";
 
-        // Traiter un Ã©vÃ©nement SSE complet.
+        // Traiter un événement SSE complet.
         function processEvent(eventText) {
 
             const lines = eventText.split("\n");
@@ -467,7 +467,7 @@ function initNaitAI() {
             try {
                 data = JSON.parse(jsonText);
             } catch {
-                throw new Error("Ã‰vÃ©nement SSE JSON invalide.");
+                throw new Error("Événement SSE JSON invalide.");
             }
 
             if (eventName === "error" || data.error) {
@@ -476,7 +476,7 @@ function initNaitAI() {
                 );
             }
 
-            // PrÃ©paration du formulaire de contact.
+            // Préparation du formulaire de contact.
             if (
                 eventName === "contact_ready" &&
                 typeof data.message === "string" &&
@@ -516,7 +516,7 @@ function initNaitAI() {
                     stream: true
                 });
 
-                // Normaliser les retours Ã  la ligne SSE.
+                // Normaliser les retours à la ligne SSE.
                 buffer = buffer.replace(/\r\n/g, "\n");
 
                 let separatorIndex;
@@ -610,16 +610,16 @@ function initNaitAI() {
     }
 
     // ==========================================
-    // 10. ACTION : PRÃ‰REMPLIR LE CONTACT
+    // 10. ACTION : PRÉREMPLIR LE CONTACT
     // ==========================================
 
-    // [V4.5] AmÃ¨ne le visiteur exactement sur le champ Â« Message Â» rempli,
-    // centrÃ© Ã  l'Ã©cran, et le met briÃ¨vement en surbrillance.
+    // [V4.5] Amène le visiteur exactement sur le champ « Message » rempli,
+    // centré à l'écran, et le met brièvement en surbrillance.
     function goToContactField(field) {
 
         const target = field.closest(".form-group") || field;
 
-        // Petit dÃ©lai : sur tÃ©lÃ©phone, la fenÃªtre du chat couvre l'Ã©cran
+        // Petit délai : sur téléphone, la fenêtre du chat couvre l'écran
         // et doit d'abord se refermer.
         setTimeout(() => {
 
@@ -634,7 +634,7 @@ function initNaitAI() {
                 field.classList.remove("nait-ai-prefilled");
             }, 3500);
 
-            // Sur ordinateur seulement : sur tÃ©lÃ©phone, le clavier
+            // Sur ordinateur seulement : sur téléphone, le clavier
             // masquerait le message que le visiteur doit relire.
             if (!window.matchMedia("(pointer: coarse)").matches) {
 
@@ -664,7 +664,7 @@ function initNaitAI() {
         button.dataset.contactMessage = contactMessage;
 
         button.textContent =
-            "PrÃ©remplir le formulaire de contact â†’";
+            "Préremplir le formulaire de contact →";
 
         button.addEventListener("click", () => {
 
@@ -675,13 +675,13 @@ function initNaitAI() {
                 document.getElementById("message");
 
             // [V4] Page projet : le formulaire est sur l'accueil.
-            // On y va, et l'accueil prÃ©remplit le champ message.
+            // On y va, et l'accueil préremplit le champ message.
             if (!contactSection || !contactField) {
 
                 storageSet(CONTACT_PREFILL_KEY, contactMessage);
                 storageSet(WINDOW_STATE_KEY, "closed");
 
-                // Ã‰vite que le retour Ã  l'ancienne position Ã©crase #contact.
+                // Évite que le retour à l'ancienne position écrase #contact.
                 storageRemove(HOME_SCROLL_KEY);
 
                 window.location.href = BASE + "index.html#message";
@@ -695,7 +695,7 @@ function initNaitAI() {
                 new Event("input", { bubbles: true })
             );
 
-            // [V4.5] On referme la fenÃªtre puis on va directement au champ message.
+            // [V4.5] On referme la fenêtre puis on va directement au champ message.
             closeChat();
 
             goToContactField(contactField);
@@ -725,21 +725,21 @@ function initNaitAI() {
         const projects = {
 
             robot: {
-                title: "DÃ©couvrir le robot domotique",
+                title: "Découvrir le robot domotique",
                 url: projectFolder + "robot.html",
-                icon: "ðŸ¤–"
+                icon: "🤖"
             },
 
             drone: {
-                title: "DÃ©couvrir le drone agricole",
+                title: "Découvrir le drone agricole",
                 url: projectFolder + "drone.html",
-                icon: "ðŸš"
+                icon: "🚁"
             },
 
             iot: {
-                title: "DÃ©couvrir le projet IoT",
+                title: "Découvrir le projet IoT",
                 url: projectFolder + "iot.html",
-                icon: "ðŸŒ"
+                icon: "🌐"
             }
 
         };
@@ -760,7 +760,7 @@ function initNaitAI() {
 
         link.textContent =
             selectedProject.icon + " " +
-            selectedProject.title + " â†’";
+            selectedProject.title + " →";
 
         messagesContainer.appendChild(link);
 
@@ -774,7 +774,7 @@ function initNaitAI() {
     }
 
     // ==========================================
-    // 12. MÃ‰MOIRE VISUELLE DE LA CONVERSATION
+    // 12. MÉMOIRE VISUELLE DE LA CONVERSATION
     // ==========================================
 
     function saveConversationDisplay() {
@@ -803,7 +803,7 @@ function initNaitAI() {
                 element.classList.contains("nait-ai-message-bot")
             ) {
 
-                // [V4] Ne jamais mÃ©moriser une bulle vide (rÃ©ponse en cours).
+                // [V4] Ne jamais mémoriser une bulle vide (réponse en cours).
                 if (!element.textContent.trim()) continue;
 
                 entries.push({
@@ -854,7 +854,7 @@ function initNaitAI() {
 
         const saved = storageGet(DISPLAY_STORAGE_KEY);
 
-        // PremiÃ¨re visite : conserver le message d'accueil.
+        // Première visite : conserver le message d'accueil.
         if (!saved) {
 
             saveConversationDisplay();
@@ -915,7 +915,7 @@ function initNaitAI() {
 
             });
 
-            // [V4] Les suggestions ne servent qu'au dÃ©but de la conversation.
+            // [V4] Les suggestions ne servent qu'au début de la conversation.
             if (
                 suggestions &&
                 entries.some(entry =>
@@ -946,8 +946,8 @@ function initNaitAI() {
     // 14. ENVOI DES MESSAGES
     // ==========================================
 
-    // [V4] replay : renvoie un message dont la rÃ©ponse a Ã©tÃ© coupÃ©e
-    // par un changement de page, sans recrÃ©er la bulle du visiteur.
+    // [V4] replay : renvoie un message dont la réponse a été coupée
+    // par un changement de page, sans recréer la bulle du visiteur.
     async function sendMessage(message, { replay = false } = {}) {
 
         const cleanMessage = String(message || "").trim();
@@ -966,8 +966,8 @@ function initNaitAI() {
             suggestions.style.display = "none";
         }
 
-        // [V4] Si l'utilisateur change de page avant la fin de la rÃ©ponse,
-        // ce message sera renvoyÃ© automatiquement sur la page suivante.
+        // [V4] Si l'utilisateur change de page avant la fin de la réponse,
+        // ce message sera renvoyé automatiquement sur la page suivante.
         storageSet(PENDING_STORAGE_KEY, cleanMessage);
 
         setLoading(true);
@@ -1043,7 +1043,7 @@ function initNaitAI() {
 
             );
 
-            // Attendre l'affichage de tous les caractÃ¨res.
+            // Attendre l'affichage de tous les caractères.
             await waitForDisplayCompletion();
 
             if (!assistantMessage.trim()) {
@@ -1052,16 +1052,16 @@ function initNaitAI() {
 
                 assistantBubble = null;
 
-                throw new Error("RÃ©ponse vide de Claude.");
+                throw new Error("Réponse vide de Claude.");
             }
 
-            // Ajouter les actions aprÃ¨s la rÃ©ponse.
+            // Ajouter les actions après la réponse.
             if (contactMessageToPrefill) {
 
                 addContactAction(contactMessageToPrefill);
             }
 
-            // [V4.4] Pas de second bouton pour un projet dÃ©jÃ  prÃ©sent dans la conversation.
+            // [V4.4] Pas de second bouton pour un projet déjà présent dans la conversation.
             if (
                 projectToVisit &&
                 !messagesContainer.querySelector(
@@ -1072,7 +1072,7 @@ function initNaitAI() {
                 addProjectAction(projectToVisit);
             }
 
-            // Mettre Ã  jour l'historique conversationnel.
+            // Mettre à jour l'historique conversationnel.
             conversationHistory.push(
 
                 {
@@ -1087,7 +1087,7 @@ function initNaitAI() {
 
             );
 
-            // Limiter le nombre de messages conservÃ©s.
+            // Limiter le nombre de messages conservés.
             if (conversationHistory.length > MAX_HISTORY) {
 
                 conversationHistory.splice(
@@ -1102,8 +1102,8 @@ function initNaitAI() {
 
         } catch (error) {
 
-            // [V4] Le flux a Ã©tÃ© coupÃ© par un changement de page :
-            // rien Ã  afficher, le message sera rejouÃ© sur la page suivante.
+            // [V4] Le flux a été coupé par un changement de page :
+            // rien à afficher, le message sera rejoué sur la page suivante.
             if (isLeaving) return;
 
             stopSmoothDisplay();
@@ -1118,8 +1118,8 @@ function initNaitAI() {
 
             addMessage(
 
-                "Je rencontre momentanÃ©ment un problÃ¨me de connexion. " +
-                "Veuillez rÃ©essayer dans quelques instants.",
+                "Je rencontre momentanément un problème de connexion. " +
+                "Veuillez réessayer dans quelques instants.",
 
                 "bot"
 
@@ -1133,7 +1133,7 @@ function initNaitAI() {
 
             setLoading(false);
 
-            // [V4] Le message n'est plus Â« en attente Â» sauf si on quitte la page.
+            // [V4] Le message n'est plus « en attente » sauf si on quitte la page.
             if (!isLeaving) {
 
                 storageRemove(PENDING_STORAGE_KEY);
@@ -1175,11 +1175,11 @@ function initNaitAI() {
     });
 
     // ==========================================
-    // 17. Ã‰TAT DU BACKEND
+    // 17. ÉTAT DU BACKEND
     // ==========================================
 
-    // [V4.2] Dernier Ã©tat connu mÃ©morisÃ© : le texte d'en-tÃªte ne change plus
-    // (Â« Assistant technologique Â» â†’ Â« En ligne Â») Ã  chaque page.
+    // [V4.2] Dernier état connu mémorisé : le texte d'en-tête ne change plus
+    // (« Assistant technologique » → « En ligne ») à chaque page.
     const STATUS_STORAGE_KEY = "nait_ai_status";
 
     function setStatus(text, online) {
@@ -1227,7 +1227,7 @@ function initNaitAI() {
             const data = await response.json();
 
             if (data.status === "online") {
-                setStatus("En ligne Â· Assistant IA", true);
+                setStatus("En ligne · Assistant IA", true);
             } else {
                 setStatus("Service indisponible", false);
             }
@@ -1247,8 +1247,8 @@ function initNaitAI() {
     // 18. INITIALISATION
     // ==========================================
 
-    // [V4.1] Recharge tout l'Ã©tat partagÃ© depuis sessionStorage.
-    // UtilisÃ©e au chargement ET au retour depuis le cache du navigateur.
+    // [V4.1] Recharge tout l'état partagé depuis sessionStorage.
+    // Utilisée au chargement ET au retour depuis le cache du navigateur.
     function applySavedState() {
 
         // [V4.2] Pas d'animation pendant la restauration.
@@ -1258,20 +1258,20 @@ function initNaitAI() {
             widget.classList.remove("nait-ai-restoring");
         }, 1500);
 
-        // 1. Historique envoyÃ© Ã  Claude (mÃªme tableau, contenu remplacÃ©)
+        // 1. Historique envoyé à Claude (même tableau, contenu remplacé)
         conversationHistory.splice(
             0,
             conversationHistory.length,
             ...loadConversationHistory()
         );
 
-        // 2. Messages affichÃ©s
+        // 2. Messages affichés
         restoreConversationDisplay();
 
         // 3. Brouillon de saisie
         input.value = storageGet(DRAFT_STORAGE_KEY) || "";
 
-        // 4. Ã‰tat ouvert/fermÃ© et position de lecture
+        // 4. État ouvert/fermé et position de lecture
         if (storageGet(WINDOW_STATE_KEY) === "open") {
 
             openChat({ focus: false, keepScroll: true });
@@ -1292,7 +1292,7 @@ function initNaitAI() {
 
     applySavedState();
 
-    // [V4] Venu d'une page projet via Â« PrÃ©remplir le formulaire de contact Â».
+    // [V4] Venu d'une page projet via « Préremplir le formulaire de contact ».
     const contactPrefill = storageGet(CONTACT_PREFILL_KEY);
     const contactFieldOnThisPage = document.getElementById("message");
 
@@ -1306,7 +1306,7 @@ function initNaitAI() {
 
         storageRemove(CONTACT_PREFILL_KEY);
 
-        // [V4.5] Une fois la page entiÃ¨rement chargÃ©e (les images dÃ©calent la mise en page),
+        // [V4.5] Une fois la page entièrement chargée (les images décalent la mise en page),
         // on se place sur le champ message.
         if (document.readyState === "complete") {
             goToContactField(contactFieldOnThisPage);
@@ -1319,7 +1319,7 @@ function initNaitAI() {
         }
     }
 
-    // [V4] Rejouer un message dont la rÃ©ponse a Ã©tÃ© coupÃ©e par la navigation.
+    // [V4] Rejouer un message dont la réponse a été coupée par la navigation.
     const pendingMessage = storageGet(PENDING_STORAGE_KEY);
 
     if (pendingMessage) {
@@ -1329,16 +1329,16 @@ function initNaitAI() {
         sendMessage(pendingMessage, { replay: true });
     }
 
-    // VÃ©rifier le backend.
+    // Vérifier le backend.
     checkBackendStatus();
 
     console.log(
-        "NAIT AI V4 â€” Widget persistant initialisÃ©."
+        "NAIT AI V4 — Widget persistant initialisé."
     );
 }
 
-// [V4] Lancement immÃ©diat (script placÃ© en fin de <body>),
-// sans attendre DOMContentLoaded : le widget est prÃªt avant le premier affichage.
+// [V4] Lancement immédiat (script placé en fin de <body>),
+// sans attendre DOMContentLoaded : le widget est prêt avant le premier affichage.
 if (document.body) {
     initNaitAI();
 } else {

@@ -1,0 +1,83 @@
+/* ===== CORRECTIFS NAIT ===== */
+
+/* 1. Menu ☰ visible sur smartphone et tablette (jusqu'à 900 px) */
+@media (max-width: 900px) {
+
+    body > header {
+        height: auto;
+        min-height: 75px;
+        padding: 12px 5%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .menu-toggle {
+        display: block;
+        padding: 5px 10px;
+        border: none;
+        background: transparent;
+        color: #fff;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    #main-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 8px 0 12px;
+    }
+
+    #main-nav.active {
+        display: flex;
+    }
+
+    #main-nav a {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+/* 2. Message de confirmation du formulaire */
+#form-message {
+    margin: 4px 0 0;
+    padding: 14px 16px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+#form-message:empty {
+    display: none;
+}
+
+#form-message.is-success {
+    border-color: #38d996;
+    background: rgba(56, 217, 150, 0.12);
+    color: #7ff0c3;
+}
+
+#form-message.is-success::before {
+    content: "✓ ";
+    font-weight: 700;
+}
+
+#form-message.is-error {
+    border-color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.12);
+    color: #ffb3b3;
+}
+
+#form-message.is-error::before {
+    content: "⚠ ";
+}
