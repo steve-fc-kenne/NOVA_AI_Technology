@@ -1,123 +1,202 @@
+/* ==========================================================
+   NAIT — script.js
+   Menu ☰ (accueil et pages projets) + formulaire de contact.
+   Chaque partie ne s'active que si ses éléments existent sur la page,
+   ce qui évite les erreurs sur les pages projets.
+   ========================================================== */
 
-const menuToggle = document.getElementById("menu-toggle");
-const mainNav = document.getElementById("main-nav");
+(function () {
+    "use strict";
 
-menuToggle.addEventListener("click", function () {
-    mainNav.classList.toggle("active");
-});
+    // ==========================================
+    // 1. MENU ☰
+    // ==========================================
 
+    var menuToggle = document.getElementById("menu-toggle");
+    var mainNav = document.getElementById("main-nav");
 
-const navLinks = document.querySelectorAll("#main-nav a");
+    if (menuToggle && mainNav) {
 
-navLinks.forEach(function (link) {
-    link.addEventListener("click", function () {
-        mainNav.classList.remove("active");
-    });
-});
+        var menuIcon = menuToggle.querySelector("span") || menuToggle;
 
+        function setMenu(open) {
+            mainNav.classList.toggle("active", open);
 
-const contactForm = document.getElementById("contact-form");
-const formMessage = document.getElementById("form-message");
-const submitButton = document.getElementById("submit-button");
+            menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
 
+            menuToggle.setAttribute(
+                "aria-label",
+                open
+                    ? "Fermer le menu de navigation"
+                    : "Ouvrir le menu de navigation"
+            );
 
-contactForm.addEventListener("submit", async function (event) {
+            menuIcon.textContent = open ? "✕" : "☰";
+        }
 
-    // Empêche le rechargement de la page
-    event.preventDefault();
+        menuToggle.addEventListener("click", function () {
+            setMenu(!mainNav.classList.contains("active"));
+        });
 
+        // Un clic sur un lien referme le menu.
+        mainNav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                setMenu(false);
+            });
+        });
 
-    // Récupération des valeurs
-    const nom = document.getElementById("nom").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const message = document.getElementById("message").value.trim();
-
-
-    // Vérification des champs vides
-    if (nom === "" || email === "" || message === "") {
-
-        formMessage.textContent = "Veuillez remplir tous les champs.";
-        formMessage.style.color = "red";
-
-        return;
-    }
-
-
-    // Vérification de la structure de l'adresse email
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(email)) {
-
-        formMessage.textContent = "Veuillez entrer une adresse e-mail valide.";
-        formMessage.style.color = "red";
-
-        return;
-    }
-
-
-    // Désactivation du bouton pendant l'envoi
-    submitButton.disabled = true;
-    submitButton.textContent = "Envoi en cours...";
-
-    formMessage.textContent = "";
-
-
-    try {
-
-        // Préparation des données du formulaire
-        const formData = new FormData(contactForm);
-
-
-        // Envoi vers Formspree
-        const response = await fetch(contactForm.action, {
-            method: "POST",
-            body: formData,
-            headers: {
-                "Accept": "application/json"
+        // Un clic ailleurs referme le menu.
+        document.addEventListener("click", function (event) {
+            if (
+                mainNav.classList.contains("active") &&
+                !mainNav.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+                setMenu(false);
             }
         });
 
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && mainNav.classList.contains("active")) {
+                setMenu(false);
+                menuToggle.focus();
+            }
+        });
 
-        // Vérification de la réponse de Formspree
-        if (response.ok) {
+        // Retour au grand écran : menu refermé.
+        window.addEventListener("resize", function () {
+            if (window.innerWidth > 900) {
+                setMenu(false);
+            }
+        });
 
-            formMessage.textContent =
-                "Votre message a été envoyé avec succès !";
-
-            formMessage.style.color = "green";
-
-
-            // Réinitialisation du formulaire
-            contactForm.reset();
-
-
-            // Retour en haut de la page
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        } else {
-
-            formMessage.textContent =
-                "Une erreur est survenue. Votre message n'a pas pu être envoyé.";
-
-            formMessage.style.color = "red";
-        }
-
-
-    } catch (error) {
-
-        formMessage.textContent =
-            "Impossible de contacter le serveur. Vérifiez votre connexion Internet.";
-
-        formMessage.style.color = "red";
-
+        // Retour depuis le cache du navigateur : menu fermé.
+        window.addEventListener("pageshow", function (event) {
+            if (event.persisted) {
+                setMenu(false);
+            }
+        });
     }
 
+    // ==========================================
+    // 2. FORMULAIRE DE CONTACT
+    // ==========================================
 
-    // Réactivation du bouton
-    submitButton.disabled = false;
-    submitButton.textContent = "Envoyer le message →";
+    var contactForm = document.getElementById("contact-form");
+    var formMessage = document.getElementById("form-message");
+    var submitButton = document.getElementById("submit-button");
 
-});
+    if (!contactForm || !formMessage || !submitButton) return;
+
+    // Affiche un message sous le bouton, SANS déplacer la page.
+    // La page ne défile que si le message n'est pas entièrement visible,
+    // et uniquement de la distance nécessaire pour le montrer.
+    function showFormMessage(type, text) {
+
+        formMessage.textContent = text;
+
+        formMessage.classList.remove("is-success", "is-error");
+        formMessage.classList.add(type === "success" ? "is-success" : "is-error");
+
+        formMessage.setAttribute("role", type === "success" ? "status" : "alert");
+
+        var rect = formMessage.getBoundingClientRect();
+
+        var fullyVisible =
+            rect.top >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+
+        if (!fullyVisible) {
+            formMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    }
+
+    function clearFormMessage() {
+        formMessage.textContent = "";
+        formMessage.classList.remove("is-success", "is-error");
+    }
+
+    // Le message de confirmation reste affiché jusqu'à ce que
+    // le visiteur commence à écrire un nouveau message.
+    contactForm.addEventListener("input", clearFormMessage);
+
+    contactForm.addEventListener("submit", async function (event) {
+
+        // Empêche le rechargement de la page
+        event.preventDefault();
+
+        // Évite un double envoi
+        if (submitButton.disabled) return;
+
+        // Récupération des valeurs
+        var nom = document.getElementById("nom").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var message = document.getElementById("message").value.trim();
+
+        // Vérification des champs vides
+        if (nom === "" || email === "" || message === "") {
+            showFormMessage("error", "Veuillez remplir tous les champs.");
+            return;
+        }
+
+        // Vérification de la structure de l'adresse email
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            showFormMessage("error", "Veuillez entrer une adresse e-mail valide.");
+            return;
+        }
+
+        // Désactivation du bouton pendant l'envoi
+        submitButton.disabled = true;
+        submitButton.textContent = "Envoi en cours...";
+
+        clearFormMessage();
+
+        try {
+
+            // Préparation des données du formulaire
+            var formData = new FormData(contactForm);
+
+            // Envoi vers Formspree
+            var response = await fetch(contactForm.action, {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            });
+
+            if (response.ok) {
+
+                // Réinitialisation du formulaire
+                contactForm.reset();
+
+                // Confirmation visible, sans aucun défilement automatique vers le haut.
+                showFormMessage(
+                    "success",
+                    "Votre message a été envoyé avec succès ! Nous vous répondrons dès que possible."
+                );
+
+            } else {
+
+                showFormMessage(
+                    "error",
+                    "Une erreur est survenue. Votre message n'a pas pu être envoyé."
+                );
+            }
+
+        } catch (error) {
+
+            showFormMessage(
+                "error",
+                "Impossible de contacter le serveur. Vérifiez votre connexion Internet."
+            );
+        }
+
+        // Réactivation du bouton
+        submitButton.disabled = false;
+        submitButton.textContent = "Envoyer le message →";
+    });
+
+})();

@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 7. DÉMARRAGE DE L'ANIMATION
     // ==========================================
 
-
+    
 function playAnimation() {
 
     // Respect de la préférence de réduction des animations
@@ -323,7 +323,7 @@ function playAnimation() {
     });
 
 
-
+   
     // ==========================================
     // 13. GESTION DE LA VISIBILITÉ DE LA SECTION
     // ==========================================
