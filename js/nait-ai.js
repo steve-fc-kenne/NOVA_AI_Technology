@@ -81,8 +81,8 @@ function initNaitAI() {
     // 1. CONFIGURATION
     // ==========================================
 
-    const API_URL = "http://localhost:3000/api/chat";
-    const STATUS_URL = "http://localhost:3000/api/status";
+    const API_URL = "https://nait-ai-backend.onrender.com/api/chat";
+    const STATUS_URL = "https://nait-ai-backend.onrender.com/api/status";
 
     const widget = document.getElementById("nait-ai-widget");
     const toggle = document.getElementById("nait-ai-toggle");
