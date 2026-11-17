@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/nait-ai.css">
 
+    <link rel="stylesheet" href="../css/correctifs.css">
+
     <!-- NAIT AI : attendre que le widget soit en place avant le premier affichage -->
     <link rel="expect" href="#nait-ai-ready" blocking="render">
 </head>
@@ -33,8 +35,13 @@
             ← Retour aux projets
         </a>
 
-        <nav>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="main-nav">
+            <span aria-hidden="true">☰</span>
+        </button>
+
+        <nav id="main-nav" aria-label="Navigation principale">
             <a href="../index.html">Accueil</a>
+            <a href="../index.html#electricite">Électricité</a>
             <a href="../index.html#services">Services</a>
             <a href="../index.html#projets">Projets</a>
             <a href="../index.html#apropos">À propos</a>
