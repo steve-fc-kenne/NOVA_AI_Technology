@@ -750,18 +750,31 @@ document.addEventListener("click", function (event) {
 
 });
 
-window.addEventListener("pageshow", function () {
+window.addEventListener("pageshow", function (event) {
 
     const position = sessionStorage.getItem("nait_position_accueil");
 
-    if (position !== null) {
+    if (position === null) return;
+
+    // La position mémorisée ne sert qu'à un RETOUR EN ARRIÈRE
+    // (bouton « Retour aux projets », flèche précédente du navigateur).
+    // Si le visiteur arrive par un lien du menu d'une page projet
+    // (Accueil, Services, Contact...), la destination du lien est respectée.
+    const navigation = performance.getEntriesByType("navigation")[0];
+
+    const isBackNavigation =
+        event.persisted ||
+        (navigation && navigation.type === "back_forward");
+
+    // Dans tous les cas, la position mémorisée ne doit pas rester en attente.
+    sessionStorage.removeItem("nait_position_accueil");
+
+    if (isBackNavigation) {
 
         window.scrollTo({
             top: Number(position),
             behavior: "instant"
         });
-
-        sessionStorage.removeItem("nait_position_accueil");
 
     }
 
